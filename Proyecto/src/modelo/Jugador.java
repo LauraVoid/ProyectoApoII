@@ -4,6 +4,7 @@ public class Jugador {
 	
 	private String nombre;
 	private int puntos;
+	private Jugador siguiente;
 	
 	public Jugador(String nom, int pu) {
 		this.nombre=nom;
@@ -25,6 +26,15 @@ public class Jugador {
 	public void setPuntos(int puntos) {
 		this.puntos = puntos;
 	}
+
+	public Jugador getSiguiente() {
+		return siguiente;
+	}
+
+	public void setSiguiente(Jugador siguiente) {
+		this.siguiente = siguiente;
+	}
+	
 	
 	
 
