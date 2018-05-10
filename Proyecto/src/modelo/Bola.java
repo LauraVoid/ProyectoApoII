@@ -5,16 +5,7 @@ public class Bola {
 	private String color;
 	private int posX;
 	private int posY;
-	private int uno;
-	private int dos;
-	private int tres;
-	private int cuatro;
-	private int cinco;
-	private int seis;
-	private int siete;
-	private int ocho;
-	private int nueve;
-	private int diez;
+	
 	
 	
 	
