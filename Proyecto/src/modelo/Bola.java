@@ -8,6 +8,9 @@ public class Bola {
 	private int uno;
 	private int dos;
 	private int tres;
+	private int cuatro;
+	private int cinco;
+	private int seis;
 	
 	public Bola(String col, int posX,int posY) {
 		this.color=col;
