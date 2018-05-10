@@ -9,6 +9,12 @@ public class Bola {
 	private int dos;
 	private int tres;
 	private int cuatro;
+	private int cinco;
+	private int seis;
+	private int siete;
+	private int ocho;
+	private int nueve;
+	private int diez;
 	
 	
 	
