@@ -3,54 +3,29 @@ package interfaz;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class PanelMenu extends JPanel implements ActionListener {
+public class PanelMenu extends JPanel implements MouseListener{
 	
-	private JButton butJugar;
-	private JButton butInstruc;
-	private JButton butListaJugadores;
-	private JButton butCargarPartida;
-	private JLabel labMenu;
+	
 	private ImageIcon imagenMenu;
-	public final String JUGAR="jugar";
-	public final String INSTRUCCIONES="instrucciones";
-	public final String JUGADORES="jugadores";
-	public final String CARGAR="cargar";
+	
 	private VentanaPrincipal ven;
 	
 	public PanelMenu(VentanaPrincipal ven) {
 		
 		this.ven=ven;
-		
+		addMouseListener(this);
 		setLayout(new GridLayout(5,1));
-		butJugar=new JButton("Jugar");
-		butJugar.setActionCommand(JUGAR);
-		butJugar.addActionListener(this);
-		butInstruc= new JButton("Instrucciones");
-		butInstruc.setActionCommand(INSTRUCCIONES);
-		butInstruc.addActionListener(this);
-		butListaJugadores= new JButton("Lista de Jugadores");
-		butListaJugadores.setActionCommand(JUGADORES);
-		butListaJugadores.addActionListener(this);
-		butCargarPartida=new JButton("Cargar Partida");
-		butCargarPartida.setActionCommand(CARGAR);
-		butCargarPartida.addActionListener(this);
+		
 		
 		imagenMenu=new ImageIcon("./imagenes/MenuJuego.png");
-		labMenu=new JLabel("Menu");
 		
-//		add(labMenu);
-//		add(butJugar);
-//		add(butInstruc);
-//		add(butListaJugadores);
-//		add(butCargarPartida);
+		
 		
 		
 		
@@ -65,22 +40,42 @@ public class PanelMenu extends JPanel implements ActionListener {
 	}
 
 	@Override
-	public void actionPerformed(ActionEvent e) {
+	public void mouseClicked(MouseEvent e) {
 		
-		if(e.getActionCommand().equals(JUGAR)) {
-			
-		}
-		else if(e.getActionCommand().equals(INSTRUCCIONES)) {
-			
-		}
-		else if(e.getActionCommand().equals(JUGADORES)) {
-			
-		}
-		else if(e.getActionCommand().equals(CARGAR)) {
-			
+		if(e.getX()>=500 && e.getX()<=600) {
+		System.out.println("Opcion Jugar");
 		}
 		
 	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+
+
+	
+
 	
 	
 

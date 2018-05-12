@@ -2,9 +2,10 @@ package interfaz;
 
 import java.awt.BorderLayout;
 
+
 import javax.swing.JFrame;
 
-public class VentanaPrincipal extends JFrame {
+public class VentanaPrincipal extends JFrame{
 	
 	private PanelMenu panelMenu;
 	
@@ -30,4 +31,10 @@ public class VentanaPrincipal extends JFrame {
 		
 	}
 
-}
+
+
+
+	}
+	
+
+
