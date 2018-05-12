@@ -5,10 +5,7 @@ public class Bola {
 	private String color;
 	private int posX;
 	private int posY;
-	
-	
-	
-	
+
 	public Bola(String col, int posX,int posY) {
 		this.color=col;
 		this.posX=posX;
