@@ -41,7 +41,7 @@ public class PanelMenu extends JPanel implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		
 		if(e.getX()>=500 && e.getX()<=600) {
-		System.out.println("Opcion Jugar");
+		ven.escenarioVisible();
 		}
 		
 	}
