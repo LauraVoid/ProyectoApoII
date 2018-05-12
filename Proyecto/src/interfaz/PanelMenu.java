@@ -28,8 +28,6 @@ public class PanelMenu extends JPanel implements MouseListener{
 		
 		
 		
-		
-		
 	}
 	
 	public void paintComponent(Graphics g) {
