@@ -1,9 +1,12 @@
 package interfaz;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,6 +18,7 @@ public class PanelMenu extends JPanel implements ActionListener {
 	private JButton butListaJugadores;
 	private JButton butCargarPartida;
 	private JLabel labMenu;
+	private ImageIcon imagenMenu;
 	public final String JUGAR="jugar";
 	public final String INSTRUCCIONES="instrucciones";
 	public final String JUGADORES="jugadores";
@@ -39,17 +43,25 @@ public class PanelMenu extends JPanel implements ActionListener {
 		butCargarPartida.setActionCommand(CARGAR);
 		butCargarPartida.addActionListener(this);
 		
+		imagenMenu=new ImageIcon("./imagenes/MenuJuego.png");
 		labMenu=new JLabel("Menu");
 		
-		add(labMenu);
-		add(butJugar);
-		add(butInstruc);
-		add(butListaJugadores);
-		add(butCargarPartida);
+//		add(labMenu);
+//		add(butJugar);
+//		add(butInstruc);
+//		add(butListaJugadores);
+//		add(butCargarPartida);
 		
 		
 		
 		
+	}
+	
+	public void paintComponent(Graphics g) {
+		
+		Graphics2D g2= (Graphics2D)g;
+		
+		g2.drawImage(imagenMenu.getImage(), 0, 0, null);
 	}
 
 	@Override

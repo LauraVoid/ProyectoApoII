@@ -15,7 +15,7 @@ public class VentanaPrincipal extends JFrame {
 		panelMenu=new PanelMenu(this);
 
 		add(panelMenu, BorderLayout.CENTER);
-		setSize(700,600);
+		setSize(700,500);
 	}
 	
 	
