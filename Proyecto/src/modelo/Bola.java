@@ -129,13 +129,7 @@ public class Bola {
 				setPosY(PanelJuego.SEGUNDA_POSY);
 				setY(PanelJuego.SEGUNDA_POSY);
 				setX2(300);
-				
-				
-			
 			}
-			
-			
-			
 		}
 		if(posX>=300&&posX<=360&&posY>=PanelJuego.SEGUNDA_POSY-40&&posY<=PanelJuego.SEGUNDA_POSY) {
 			setDesaparece(true);
