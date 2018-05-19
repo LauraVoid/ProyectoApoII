@@ -93,7 +93,7 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 		double angulo=0;
 		double dis= Math.sqrt(((Math.pow((e.getX()-ventanita.xRana()), 2))+(Math.pow((e.getY()-ventanita.yRana()), 2))));
 		System.out.println(dis);
-		angulo=((e.getY()-ventanita.yRana())/dis);
+		angulo=((ventanita.yRana()-e.getY())/dis);
 		System.out.println(angulo);
 		
 		setRotacion(angulo);
