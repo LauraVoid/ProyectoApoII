@@ -17,7 +17,7 @@ public class PanelJuego extends JPanel implements MouseListener {
 	public static final int MAX_POSY=365;
 	public  static final int MAX_POSX=655;
 	public  static final int MIN_POSY=65;
-	public  static final int MIN_POSX=0;
+	public  static final int MIN_POSX=-120;
 	public static final int SEGUNDA_POSY=255;
 	
 	

@@ -31,6 +31,7 @@ public class VentanaPrincipal extends JFrame{
 		iniciarMovimiento();
 	}
 	
+	
 	public void escenarioVisible() {
 		panelMenu.setVisible(false);
 		panelJuego.setVisible(true);
