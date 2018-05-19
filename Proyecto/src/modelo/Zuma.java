@@ -7,6 +7,8 @@ import interfaz.PanelJuego;
 public class Zuma {
 	
 	public ArrayList<Bola> bolitas;
+	private Jugador primerJugador;
+	
 	
 	public Zuma() {
 		bolitas = new ArrayList<Bola>();
@@ -25,7 +27,25 @@ public class Zuma {
 	public void setBolitas(ArrayList<Bola> bolitas) {
 		this.bolitas = bolitas;
 	}
-	
+
+
+	public Jugador getPrimerJugador() {
+		return primerJugador;
+	}
+
+
+	public void setPrimerJugador(Jugador primerJugador) {
+		this.primerJugador = primerJugador;
+	}
+	public void addJugador(Jugador nuevo) {
+		
+		if(primerJugador==null) {
+			primerJugador=nuevo;
+		}
+		else
+			primerJugador.addJugador(nuevo);
+			
+	}
 	
 
 }

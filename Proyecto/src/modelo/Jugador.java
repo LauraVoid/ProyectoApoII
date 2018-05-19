@@ -5,10 +5,13 @@ public class Jugador {
 	private String nombre;
 	private int puntos;
 	private Jugador siguiente;
+	private Jugador anterior;
+	private Moneda raiz;
 	
 	public Jugador(String nom, int pu) {
 		this.nombre=nom;
 		this.puntos=pu;
+		raiz=null;
 	}
 
 	public String getNombre() {
@@ -34,6 +37,32 @@ public class Jugador {
 	public void setSiguiente(Jugador siguiente) {
 		this.siguiente = siguiente;
 	}
+	
+
+	public Jugador getAnterior() {
+		return anterior;
+	}
+
+	public void setAnterior(Jugador anterior) {
+		this.anterior = anterior;
+	}
+
+	public Moneda getRaiz() {
+		return raiz;
+	}
+
+	public void setRaiz(Moneda raiz) {
+		this.raiz = raiz;
+	}
+	
+	public void addJugador(Jugador nuevo) {
+		
+		if(siguiente ==null) {
+			siguiente=nuevo;
+			siguiente.setAnterior(siguiente);
+		}
+	}
+	
 	
 	
 	

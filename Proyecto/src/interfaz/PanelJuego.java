@@ -13,7 +13,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import com.sun.javafx.geom.Rectangle;
 
 public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 	
