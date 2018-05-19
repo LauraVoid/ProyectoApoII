@@ -5,12 +5,14 @@ public class Rana {
 	private String color;
 	private int posX;
 	private int posY;
+	private Bala bala;
 	
 	public Rana(String col, int posX, int posY) {
 		
 		this.color=col;
 		this.posX=posX;
 		this.posY=posY;
+		bala= new Bala("C",posX, posY,false);
 	}
 
 	public String getColor() {
@@ -36,6 +38,15 @@ public class Rana {
 	public void setPosY(int posY) {
 		this.posY = posY;
 	}
+
+	public Bala getBala() {
+		return bala;
+	}
+
+	public void setBala(Bala bala) {
+		this.bala = bala;
+	}
+	
 	
 	
 	

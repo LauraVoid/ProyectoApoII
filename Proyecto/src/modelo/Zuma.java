@@ -18,7 +18,7 @@ public class Zuma {
 		bolitas.add(new BolaNormal("NEGRO",-60,PanelJuego.MAX_POSY, false ));
 		bolitas.add(new BolaNormal("AMARILLO",-90,PanelJuego.MAX_POSY, false));
 		bolitas.add(new BolaNormal("ROJO",-120,PanelJuego.MAX_POSY,false));
-		ranita= new RanaNormal("c",79,96);
+		ranita= new RanaNormal("c",290,200);
 	}
 	
 

@@ -5,7 +5,9 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
+import hilos.HiloBala;
 import hilos.HiloBola;
+import modelo.Bala;
 import modelo.Bola;
 import modelo.Zuma;
 
@@ -28,7 +30,8 @@ public class VentanaPrincipal extends JFrame{
 		panelJuego.setVisible(false);
 		
 		setSize(700,515);
-		iniciarMovimiento();
+		iniciarMovimientoBola();
+		
 	}
 	
 	
@@ -42,9 +45,18 @@ public class VentanaPrincipal extends JFrame{
 		return miZuma.getBolitas();
 	}
 	
-	public void iniciarMovimiento() {
+	public Bala darBala() {
+		return miZuma.getRanita().getBala();
+	}
+	
+	public void iniciarMovimientoBola() {
 		HiloBola h = new HiloBola(miZuma,this);
 		h.start();
+	}
+	public void iniciarMovimientoBala(int x, int y) {
+		HiloBala h = new HiloBala(miZuma,this, x, y);
+		h.start();
+		
 	}
 	
 	public int xRana() {

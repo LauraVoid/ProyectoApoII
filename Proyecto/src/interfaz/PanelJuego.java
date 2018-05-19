@@ -53,32 +53,36 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 	}
 	
 	public void paintComponent(Graphics g) {
-		boolean rotar=true;
+		
 		Graphics2D g2 = (Graphics2D)g;
 		g2.drawImage(escenario.getImage(), 0, 0, null);
-		AffineTransform tx = AffineTransform.getRotateInstance(rotacion, rana.getIconWidth()/2, rana.getIconHeight()/2);
+		//AffineTransform tx = AffineTransform.getRotateInstance(rotacion, rana.getIconWidth()/2, rana.getIconHeight()/2);
+		AffineTransform tx = AffineTransform.getTranslateInstance(ventanita.xRana(), ventanita.yRana());
+		tx.rotate(Math.toRadians(rotacion),rana.getIconWidth()/2, rana.getIconHeight()/2);
 		
-		if(rotar) {
-		g2.drawImage(rana.getImage(), tx, this);
-		g2.rotate(rotacion);
-		}
+		g2.drawImage(rana.getImage(), tx, null);
+		
+		g2.fillOval(ventanita.darBala().getPosX(), ventanita.darBala().getPosY(), 30, 30);
+		
 		for(int i=0; i<ventanita.darBolas().size();i++) {
-			rotar=false;
+			
 		    if(!ventanita.darBolas().get(i).isDesaparece()) {
 			g.setColor(Color.BLUE);
 			
 			g.fillOval(ventanita.darBolas().get(i).getPosX(), ventanita.darBolas().get(i).getPosY(), 30, 30);
 		    }
 		}
+		
 	
 
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-//		if(e.getActionCommand().equals(ROTAR)) {
-//			setRotacion(getRotacion() + 20);
-//	        repaint();
-//		}
+		if(e.getActionCommand().equals(ROTAR)) {
+			setRotacion(-16);
+					
+	        repaint();
+		}
 		
 	
 	}
@@ -87,25 +91,38 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-
-		System.out.println("X " + e.getX());
-		System.out.println("Y " + e.getY());
-		double angulo=0;
-		double dis= Math.sqrt(((Math.pow((e.getX()-ventanita.xRana()), 2))+(Math.pow((e.getY()-ventanita.yRana()), 2))));
-		System.out.println(dis);
-		angulo=((ventanita.yRana()-e.getY())/dis);
-		System.out.println(angulo);
 		
-		setRotacion(angulo);
-        repaint();
+//		System.out.println("X " + e.getX());
+//		System.out.println("Y " + e.getY());
+////		double angulo=0;
+////		double dis= Math.sqrt(((Math.pow((e.getX()-ventanita.xRana()), 2))+(Math.pow((e.getY()-ventanita.yRana()), 2))));
+////		System.out.println(dis);
+////		angulo=((ventanita.yRana()-e.getY())/dis);
+//		
+		double x=(e.getX()-ventanita.xRana());
+		double y=(e.getY()-ventanita.yRana());
+		double r = Math.hypot(x, y);
+		double yy= ventanita.yRana()-e.getY();
+		double angulo = yy/r;
+		double b = Math.toDegrees(angulo);
+		System.out.println("Para x = " + x + "   y = " + y);
+		System.out.println("hipotenusa = " + r);
+		System.out.println("angulo2 = " + b + "º");
+		setRotacion(b);
+		ventanita.iniciarMovimientoBala(e.getX(), e.getY());
+        
+        
+        
+
+
 		
 
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		
 
+		
 	}
 
 	@Override

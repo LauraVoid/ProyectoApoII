@@ -137,41 +137,52 @@ public class Bola {
 //	}
 
 		
-		public void mover() {
-			
-			
-			if(posX>=x&&posY==y) {
-				
-				moverX(5);
-			}
-			if(posX>=x2&&posY<=y) {
-				
-			moverY(5);
-			
-			}
-			if(posY<=y2) {
-				
-				moverX2(5);
-			}
-			if(posX<=30&&posY<=PanelJuego.SEGUNDA_POSY) {
-				
-				moverY2(5);
-				
-				if(posY>=PanelJuego.SEGUNDA_POSY) {
-					setPosY(PanelJuego.SEGUNDA_POSY);
-					setY(PanelJuego.SEGUNDA_POSY);
-					setX2(300);
-				}
-			}
-			if(posX>=300&&posX<=360&&posY>=PanelJuego.SEGUNDA_POSY-40&&posY<=PanelJuego.SEGUNDA_POSY) {
-				setDesaparece(true);
-			}
-			
-			
-			
-			
-			
-		}
+//		public void mover() {
+//			
+//			
+//			if(posX>=x&&posY==y) {
+//				
+//				moverX(5);
+//			}
+//			if(posX>=x2&&posY<=y) {
+//				
+//			moverY(5);
+//			
+//			}
+//			if(posY<=y2) {
+//				
+//				moverX2(5);
+//			}
+//			if(posX<=30&&posY<=PanelJuego.SEGUNDA_POSY) {
+//				
+//				moverY2(5);
+//				
+//				if(posY>=PanelJuego.SEGUNDA_POSY) {
+//					setPosY(PanelJuego.SEGUNDA_POSY);
+//					setY(PanelJuego.SEGUNDA_POSY);
+//					setX2(300);
+//				}
+//			}
+//			if(posX>=300&&posX<=360&&posY>=PanelJuego.SEGUNDA_POSY-40&&posY<=PanelJuego.SEGUNDA_POSY) {
+//				setDesaparece(true);
+//			}
+//			
+//			
+//			
+//			
+//			
+//		}
+//		
+//		public void moverBala(int num) {
+//			
+//			posX+=10;
+//			if(posX>=num) {
+//				setDesaparece(true);
+//			}
+//			
+//			
+//		}
+		
 	
 	
 

@@ -1,26 +1,34 @@
 package hilos;
 
 import interfaz.VentanaPrincipal;
+import modelo.Bala;
 import modelo.BolaNormal;
 import modelo.Zuma;
 
-public class HiloBola extends Thread{
+public class HiloBala extends Thread{
+
 	
+
 	private Zuma miZuma;
 	private VentanaPrincipal ventanita;
+	private int posX;
+	private int posY;
 
-	public HiloBola(Zuma miZuma,VentanaPrincipal ventanita) {
+	public HiloBala(Zuma miZuma,VentanaPrincipal ventanita, int posX, int posY) {
 		this.miZuma=miZuma;
 		this.ventanita=ventanita;
+		this.posX=posX;
+		this.posY=posY;
 	}
 	
 	public void run() {
-		while(true) {
-		for(int i=0;i<miZuma.getBolitas().size();i++) {
-			BolaNormal bola = (BolaNormal) miZuma.getBolitas().get(i);
-			bola.mover(0,0);
+		while(!miZuma.getRanita().getBala().isDesaparece()) {
+		
+			
+			miZuma.getRanita().getBala().mover(posX, posY);
+			
 			try {
-				Thread.sleep(5);
+				Thread.sleep(50);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -30,4 +38,4 @@ public class HiloBola extends Thread{
 		}
 	}
 
-}
+
