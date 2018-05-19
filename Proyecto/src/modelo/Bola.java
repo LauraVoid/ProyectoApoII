@@ -66,12 +66,7 @@ public class Bola {
 	     public void moverY2(int num) {
 	    	 posY+=num;
 	     }
-	     
-	     
-	    
-	
-	
-        public int getX() {
+	     public int getX() {
 			return x;
 		}
 
@@ -158,7 +153,7 @@ public class Bola {
 				
 				moverX2(5);
 			}
-			if(posX<=5&&posX>=0&&posY>=y2) {
+			if(posX<=30&&posY<=PanelJuego.SEGUNDA_POSY) {
 				
 				moverY2(5);
 				
