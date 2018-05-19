@@ -8,6 +8,7 @@ public class Zuma {
 	
 	public ArrayList<Bola> bolitas;
 	private Jugador primerJugador;
+	private Rana ranita;
 	
 	
 	public Zuma() {
@@ -17,6 +18,7 @@ public class Zuma {
 		bolitas.add(new BolaNormal("NEGRO",-60,PanelJuego.MAX_POSY, false ));
 		bolitas.add(new BolaNormal("AMARILLO",-90,PanelJuego.MAX_POSY, false));
 		bolitas.add(new BolaNormal("ROJO",-120,PanelJuego.MAX_POSY,false));
+		ranita= new RanaNormal("c",79,96);
 	}
 	
 
@@ -46,6 +48,17 @@ public class Zuma {
 			primerJugador.addJugador(nuevo);
 			
 	}
+
+
+	public Rana getRanita() {
+		return ranita;
+	}
+
+
+	public void setRanita(Rana ranita) {
+		this.ranita = ranita;
+	}
+	
 	
 
 }

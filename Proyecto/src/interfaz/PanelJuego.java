@@ -53,12 +53,17 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 	}
 	
 	public void paintComponent(Graphics g) {
+		boolean rotar=true;
 		Graphics2D g2 = (Graphics2D)g;
 		g2.drawImage(escenario.getImage(), 0, 0, null);
 		AffineTransform tx = AffineTransform.getRotateInstance(rotacion, rana.getIconWidth()/2, rana.getIconHeight()/2);
-		g2.drawImage(rana.getImage(), tx, this);
 		
+		if(rotar) {
+		g2.drawImage(rana.getImage(), tx, this);
+		g2.rotate(rotacion);
+		}
 		for(int i=0; i<ventanita.darBolas().size();i++) {
+			rotar=false;
 		    if(!ventanita.darBolas().get(i).isDesaparece()) {
 			g.setColor(Color.BLUE);
 			
@@ -70,13 +75,14 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals(ROTAR)) {
-			setRotacion(getRotacion() + 20);
-	        repaint();
-		}
+//		if(e.getActionCommand().equals(ROTAR)) {
+//			setRotacion(getRotacion() + 20);
+//	        repaint();
+//		}
 		
 	
 	}
+	
 	
 
 	@Override
@@ -84,6 +90,14 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 
 		System.out.println("X " + e.getX());
 		System.out.println("Y " + e.getY());
+		double angulo=0;
+		double dis= Math.sqrt(((Math.pow((e.getX()-ventanita.xRana()), 2))+(Math.pow((e.getY()-ventanita.yRana()), 2))));
+		System.out.println(dis);
+		angulo=((e.getY()-ventanita.yRana())/dis);
+		System.out.println(angulo);
+		
+		setRotacion(angulo);
+        repaint();
 		
 
 	}

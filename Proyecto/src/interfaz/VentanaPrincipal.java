@@ -47,6 +47,14 @@ public class VentanaPrincipal extends JFrame{
 		h.start();
 	}
 	
+	public int xRana() {
+		return miZuma.getRanita().getPosX();
+	}
+	
+	public int yRana() {
+		return miZuma.getRanita().getPosY();
+	}
+	
 	
 	public static void main(String[] args) {
 		
