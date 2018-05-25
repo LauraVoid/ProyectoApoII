@@ -44,6 +44,11 @@ public class PanelMenu extends JPanel implements MouseListener{
 		ven.escenarioVisible();
 		}
 		
+		if(e.getX()>=500 && e.getX()<=640 && e.getY()>=300 && e.getY()<=310) {
+			ven.mostrarLista();
+			}
+		
+		
 	}
 
 	@Override

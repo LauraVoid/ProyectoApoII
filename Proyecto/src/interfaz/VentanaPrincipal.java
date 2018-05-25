@@ -15,6 +15,7 @@ public class VentanaPrincipal extends JFrame{
 	
 	private PanelMenu panelMenu;
 	private PanelJuego panelJuego;
+	private PanelListaJugadores panelLista;
 	private Zuma miZuma;
 	
 	public VentanaPrincipal() {
@@ -24,21 +25,36 @@ public class VentanaPrincipal extends JFrame{
 		setLayout(new BorderLayout());
 		miZuma= new Zuma();
 		panelMenu=new PanelMenu(this);
+		panelLista= new PanelListaJugadores(this);
+		
+		
 		panelJuego= new PanelJuego(this);
-
-		add(panelMenu, BorderLayout.CENTER);
 		panelJuego.setVisible(false);
+		add(panelMenu, BorderLayout.CENTER);
+		
 		
 		setSize(700,515);
-		iniciarMovimientoBola();
+		
 		
 	}
 	
 	
 	public void escenarioVisible() {
-		panelMenu.setVisible(false);
+		
+		panelMenu.setVisible(false);			
+	
 		panelJuego.setVisible(true);
 		add(panelJuego, BorderLayout.CENTER);
+		
+	}
+	public void mostrarLista() {
+//		panelMenu.setVisible(false);
+		panelLista.setVisible(true);
+		
+
+	}
+	public void regresarMenu() {
+		panelMenu.setVisible(true);
 	}
 	
 	public ArrayList<Bola> darBolas(){
@@ -48,12 +64,19 @@ public class VentanaPrincipal extends JFrame{
 	public Bala darBala() {
 		return miZuma.getRanita().getBala();
 	}
+	public void crearBala() {
+		
+//		Bala bala= new Bala("v",xRana(),yRana(),false);		
+		miZuma.getRanita().crearBala();
+	}
 	
 	public void iniciarMovimientoBola() {
 		HiloBola h = new HiloBola(miZuma,this);
 		h.start();
 	}
 	public void iniciarMovimientoBala(int x, int y) {
+		System.out.println("X " +x);
+		System.out.println("Y " +y);
 		HiloBala h = new HiloBala(miZuma,this, x, y);
 		h.start();
 		

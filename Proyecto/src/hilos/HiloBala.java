@@ -22,13 +22,22 @@ public class HiloBala extends Thread{
 	}
 	
 	public void run() {
+		
+//		int xBala=miZuma.getRanita().getBala().getPosX();
+//		int yBala=miZuma.getRanita().getBala().getPosY();
+		
 		while(!miZuma.getRanita().getBala().isDesaparece()) {
 		
 			
-			miZuma.getRanita().getBala().mover(posX, posY);
+			if(posX>50 && posX<=430) {
+			miZuma.getRanita().getBala().moverArribaIzquierda(posX, posY);
+			}
+			else if(posX>421 && posX<=700 ) {
+				miZuma.getRanita().getBala().moverArribaDerecha(posX, posY);
+			}
 			
 			try {
-				Thread.sleep(50);
+				Thread.sleep(30);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

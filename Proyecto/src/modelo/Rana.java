@@ -12,7 +12,14 @@ public class Rana {
 		this.color=col;
 		this.posX=posX;
 		this.posY=posY;
-		bala= new Bala("C",posX, posY,false);
+		crearBala();
+//		bala= new Bala("C",posX, posY,false);S
+	}
+	public void crearBala() {
+		System.out.println("pos de rana X "+getPosX());
+		System.out.println("pos de rana Y "+getPosY());
+		Bala bala= new Bala("v",posX+63,posY+27,false);
+		setBala(bala);
 	}
 
 	public String getColor() {

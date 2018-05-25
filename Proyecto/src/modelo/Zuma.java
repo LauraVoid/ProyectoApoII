@@ -58,6 +58,10 @@ public class Zuma {
 	public void setRanita(Rana ranita) {
 		this.ranita = ranita;
 	}
+
+
+	
+	
 	
 	
 
