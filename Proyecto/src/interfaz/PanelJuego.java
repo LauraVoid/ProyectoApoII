@@ -11,6 +11,7 @@ import java.awt.geom.AffineTransform;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -25,7 +26,7 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 	public  static final int MIN_POSY=65;
 	public  static final int MIN_POSX=-120;
 	public static final int SEGUNDA_POSY=255;
-	public static final String MENU="Menu";
+	public static final String GUARDAR="guardar";
 	private double rotacion;
 	private JButton menu;
 	
@@ -33,7 +34,7 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 
 	public PanelJuego(VentanaPrincipal ventanita) {
 		this.ventanita=ventanita;
-		menu= new JButton("Regresar");
+		menu= new JButton("Guardar");
 		add(menu);
 		ventanita.iniciarMovimientoBola();
 
@@ -41,7 +42,7 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 		escenario = new ImageIcon("./imagenes/Escenario.png");
 		addMouseListener(this);
 		menu.addActionListener(this);
-		menu.setActionCommand(MENU);
+		menu.setActionCommand(GUARDAR);
 	}
 	
 	
@@ -81,8 +82,8 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals(MENU)) {
-			ventanita.regresarMenu();		
+		if(e.getActionCommand().equals(GUARDAR)) {
+			
 		}
 		
 	

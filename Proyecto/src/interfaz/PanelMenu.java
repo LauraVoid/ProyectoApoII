@@ -7,6 +7,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class PanelMenu extends JPanel implements MouseListener{
@@ -41,12 +42,24 @@ public class PanelMenu extends JPanel implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		
 		if(e.getX()>=500 && e.getX()<=600 && e.getY()>=180 && e.getY()<=200) {
-		ven.escenarioVisible();
+//		NO BORRAR
+//	    String respuesta= JOptionPane.showInputDialog("Ingresa tu nombre");
+			
+		    ven.escenarioVisible();
 		}
 		
-		if(e.getX()>=500 && e.getX()<=640 && e.getY()>=300 && e.getY()<=310) {
+		else if(e.getX()>=500 && e.getX()<=640 && e.getY()>=300 && e.getY()<=310) {
 			ven.mostrarLista();
 			}
+		else if(e.getX()>=500 && e.getX()<=520 && e.getY()>=390 && e.getY()<=400) {
+			ven.salirJuego();
+			
+		}
+		else if(e.getX()>=500 && e.getX()<=600 && e.getY()>=240 && e.getY()<=260) {
+			String respuesta= JOptionPane.showInputDialog("Ingrese su nombre");
+			ven.cargar(respuesta);
+		}
+//		System.out.println("X " +e.getX()+ " Y " +e.getY());
 		
 		
 	}

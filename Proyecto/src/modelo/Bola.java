@@ -53,11 +53,11 @@ public class Bola {
 		this.desaparece = desaparece;
 	}
 
-	public void moverX(int num) {
+	public void moverX(double num) {
 		posX += num;
 	}
 
-	public void moverY(int num) {
+	public void moverY(double num) {
 		posY -= num;
 	}
 

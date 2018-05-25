@@ -16,6 +16,20 @@ public class RanaPoder extends Rana{
 	public void setRaiz(Poder raiz) {
 		this.raiz = raiz;
 	}
+	/**
+	 * Agrega un nuevo Poder al árbol
+	 * @param nuevo Poder nueva a agregar
+	 * nuevo!=null
+	 */
+	public void addPoder(Poder nuevo) {
+
+		if (raiz == null) {
+			raiz = nuevo;
+
+		} else
+			raiz.addPoder(nuevo);
+
+	}
 	 
 	
 	

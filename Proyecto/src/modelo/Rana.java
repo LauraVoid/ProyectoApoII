@@ -13,11 +13,13 @@ public class Rana {
 		this.posX=posX;
 		this.posY=posY;
 		crearBala();
-//		bala= new Bala("C",posX, posY,false);S
 	}
+	/**
+	 * Crea una instancia Bala para la Rana
+	 * y agrega la Bala a la Rana
+	 */
 	public void crearBala() {
-		System.out.println("pos de rana X "+getPosX());
-		System.out.println("pos de rana Y "+getPosY());
+		
 		Bala bala= new Bala("v",posX+63,posY+27,false);
 		setBala(bala);
 	}
@@ -53,6 +55,7 @@ public class Rana {
 	public void setBala(Bala bala) {
 		this.bala = bala;
 	}
+	
 	
 	
 	
