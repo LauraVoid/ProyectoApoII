@@ -173,7 +173,7 @@ public class Bola {
 //			
 //		}
 //		
-//		public void moverBala(int num) {
+//		public void moverBala(int num, int x) {
 //			
 //			posX+=10;
 //			if(posX>=num) {
@@ -183,7 +183,7 @@ public class Bola {
 //			
 //		}
 		//Paila nos jodimos 
-	
+	//c mamut
 	
 
 }
