@@ -230,7 +230,7 @@ public class Zuma {
 	/**
 	 * Retorna la lista ordenada por apellido de cada Jugador
 	 * 
-	 * @return lista ordenada lista!=null
+	 * @return lista ordenada lista!=nulll
 	 */
 
 	public ArrayList<Jugador> listaOrdenadaApellido() {

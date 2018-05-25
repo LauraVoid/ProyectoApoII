@@ -14,7 +14,7 @@ class BolaTest {
 	private void setUpUno() {
 
 		Zuma zuma = new Zuma();
-		bola = new Bola("Amarillo", 0, 0, false);
+		bola = new Bola(1, 0, 0, false);
 		zuma.setPrimerBola(bola);
 	}
 
