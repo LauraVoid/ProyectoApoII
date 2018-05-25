@@ -3,31 +3,73 @@ package modelo;
 import interfaz.PanelJuego;
 
 public class Bola {
-
-	private String color;
+	
+	
+    public static final int AMARILLO =1;
+    public static final int ROJO =2;
+    public static final int AZUL =3;
+    public static final int VERDE =4;
+    
+	private int color;
+	
 	private int posX;
 	private int posY;
-	
 	private boolean desaparece;
-	private int x = PanelJuego.MIN_POSX;
+	private Bola siguiente;
+	private Bola anterior;
+    private int x = PanelJuego.MIN_POSX;
 	private int y = PanelJuego.MAX_POSY;
 	private int x2 = PanelJuego.MAX_POSX;
 	private int y2 = PanelJuego.MIN_POSY;
 
-	public Bola(String col, int posX, int posY, boolean desaparece) {
+	public Bola(int col, int posX, int posY, boolean desaparece) {
+		siguiente=null;
+		anterior=null;
 		this.color = col;
 		this.posX = posX;
 		this.posY = posY;
 		this.desaparece = desaparece;
+		
 	}
 
-	public String getColor() {
+	
+
+	public int getColor() {
 		return color;
 	}
 
-	public void setColor(String color) {
+
+
+	public void setColor(int color) {
 		this.color = color;
 	}
+	
+
+
+
+	public Bola getSiguiente() {
+		return siguiente;
+	}
+
+
+
+	public void setSiguiente(Bola siguiente) {
+		this.siguiente = siguiente;
+	}
+
+
+
+	public Bola getAnterior() {
+		return anterior;
+	}
+
+
+
+	public void setAnterior(Bola anterior) {
+		this.anterior = anterior;
+	}
+
+
 
 	public int getPosX() {
 		return posX;
@@ -84,6 +126,26 @@ public class Bola {
 	public void setY(int y) {
 		this.y = y;
 	}
+	
+	/**
+	 * Verifica si la bola se encuentra en el rango especificado
+	 * @param posX
+	 * @return true, si la bola esta en ese rango y false en caso contrario
+	 */
+	public boolean areaX(int posX) {
+		return ((posX>this.getPosX())&&(posX<this.getPosX()+30)) ;
+	}
+	
+	/**
+	 * Verifica si la bola se encuentra en el rango especificado
+	 * @param posY
+	 * @return true, si la bola esta en ese rango y false en caso contrario
+	 */
+	public boolean areaY(int posY) {
+		return ((posY>this.getPosY())&&(posY<this.getPosY()+30)) ;
+		
+	}
+	
 
 
 		

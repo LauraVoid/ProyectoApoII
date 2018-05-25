@@ -38,7 +38,7 @@ public class HiloBala extends Thread{
 			}
 			
 			try {
-				Thread.sleep(15);
+				Thread.sleep(2);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

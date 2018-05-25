@@ -2,7 +2,7 @@ package modelo;
 
 public class Bala extends Bola implements BolaMovible {
 
-	public Bala(String col, int posX, int posY, boolean desaparece) {
+	public Bala(int col, int posX, int posY, boolean desaparece) {
 		super(col, posX, posY, desaparece);
 	}
 

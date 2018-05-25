@@ -14,6 +14,9 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import modelo.Bola;
+import modelo.Zuma;
+
 
 public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 	
@@ -24,7 +27,7 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 	public static final int MAX_POSY=365;
 	public  static final int MAX_POSX=655;
 	public  static final int MIN_POSY=65;
-	public  static final int MIN_POSX=-120;
+	public  static final int MIN_POSX=-330;
 	public static final int SEGUNDA_POSY=255;
 	public static final String GUARDAR="guardar";
 	private double rotacion;
@@ -65,14 +68,19 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 		g2.drawImage(rana.getImage(), tx, null);
 		
 		
+		Bola actual=ventanita.darPrimerBola();
 		
-		for(int i=0; i<ventanita.darBolas().size();i++) {
-			
-		    if(!ventanita.darBolas().get(i).isDesaparece()) {
-			g.setColor(Color.BLUE);
-			
-			g.fillOval(ventanita.darBolas().get(i).getPosX(), ventanita.darBolas().get(i).getPosY(), 30, 30);
+			while(actual!=null) {
+		  
+			 if(!actual.isDesaparece()) {
+		    	if(actual.getColor()==Bola.AMARILLO)g2.setColor(new Color(206, 200, 30));
+		    	else if(actual.getColor()==Bola.VERDE)g2.setColor(new Color(55, 163, 40));
+		    	else if(actual.getColor()==Bola.AZUL)g2.setColor(new Color(100, 150, 229));
+		    	else if(actual.getColor()==Bola.ROJO)g2.setColor(new Color(186, 18, 38));
+		    	else if(actual.getColor()==5)g2.setColor(Color.BLACK);//este es pa ensayar la enchoclada, pero esta jodida
+			g2.fillOval(actual.getPosX(),actual.getPosY(), 30, 30);
 		    }
+		    actual=actual.getSiguiente();
 		}
 		g2.setColor(Color.BLACK);
 		g2.fillOval(ventanita.darBala().getPosX(), ventanita.darBala().getPosY(), 30, 30);
@@ -113,7 +121,11 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 		setRotacion(b);
 		ventanita.crearBala();
 		ventanita.iniciarMovimientoBala(e.getX(), e.getY());
-        
+		
+		if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.AMARILLO)System.out.println("Amarillo");
+		if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.AZUL)System.out.println("Azul");
+		if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.ROJO)System.out.println("Rojo");
+		if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.VERDE)System.out.println("Verde");
         
         
 

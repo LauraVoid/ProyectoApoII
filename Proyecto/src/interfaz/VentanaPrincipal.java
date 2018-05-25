@@ -52,10 +52,6 @@ public class VentanaPrincipal extends JFrame {
 		panelMenu.setVisible(true);
 	}
 
-	public ArrayList<Bola> darBolas() {
-		return miZuma.getBolitas();
-	}
-
 	public Bala darBala() {
 		return miZuma.getRanita().getBala();
 	}
@@ -76,6 +72,9 @@ public class VentanaPrincipal extends JFrame {
 		h.start();
 
 	}
+	public Bola darPrimerBola() {
+		return miZuma.getPrimerBola();
+	}
 
 	public int xRana() {
 		return miZuma.getRanita().getPosX();
@@ -87,6 +86,10 @@ public class VentanaPrincipal extends JFrame {
 
 	public void salirJuego() {
 		System.exit(0);
+	}
+	
+	public Bola darBolaBuscada(int posX, int posY) {
+		return miZuma.buscarBolaPosicion(posX, posY);
 	}
 
 	public void cargar(String nombre) throws NullPointerException {

@@ -4,7 +4,7 @@ import interfaz.PanelJuego;
 
 public class BolaNormal extends Bola implements BolaMovible{
 
-	public BolaNormal(String col, int posX, int posY, boolean desaparece) {
+	public BolaNormal(int col, int posX, int posY, boolean desaparece) {
 		super(col, posX, posY, desaparece);
 	}
 	

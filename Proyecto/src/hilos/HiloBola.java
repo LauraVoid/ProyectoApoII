@@ -1,6 +1,7 @@
 package hilos;
 
 import interfaz.VentanaPrincipal;
+import modelo.Bola;
 import modelo.BolaNormal;
 import modelo.Zuma;
 
@@ -16,8 +17,11 @@ public class HiloBola extends Thread{
 	
 	public void run() {
 		while(true) {
-		for(int i=0;i<miZuma.getBolitas().size();i++) {
-			BolaNormal bola = (BolaNormal) miZuma.getBolitas().get(i);
+			Bola actual=miZuma.getPrimerBola();
+			while(actual!=null) {
+				
+		
+			BolaNormal bola = (BolaNormal) actual;
 			bola.mover(0,0);
 			try {
 				Thread.sleep(5);
@@ -26,6 +30,7 @@ public class HiloBola extends Thread{
 				e.printStackTrace();
 			}
 			ventanita.repaint();
+			actual=actual.getSiguiente();
 		}
 		}
 	}

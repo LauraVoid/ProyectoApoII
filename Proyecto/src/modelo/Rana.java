@@ -20,7 +20,7 @@ public class Rana {
 	 */
 	public void crearBala() {
 		
-		Bala bala= new Bala("v",posX+63,posY+27,false);
+		Bala bala= new Bala(1,posX+63,posY+27,false);
 		setBala(bala);
 	}
 
