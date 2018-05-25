@@ -35,6 +35,25 @@ public class Poder {
 	public void setIzq(Poder izq) {
 		this.izq = izq;
 	}
+	/**
+	 * Agrega un nuevo poder al arbol según su velocidad
+	 * @param nuevo Poder nuevo a agregar
+	 * nuevo!=null
+	 */
+	public void addPoder(Poder nuevo) {
+
+		if (nuevo.getVelocidad() <=velocidad) {
+			if (izq == null) {
+				izq = nuevo;
+			} else
+				izq.addPoder(nuevo);
+		} else if (nuevo.getVelocidad() >velocidad) {
+			if (der == null) {
+				der = nuevo;
+			} else
+				der.addPoder(nuevo);
+		}
+	}
 	
 	
 

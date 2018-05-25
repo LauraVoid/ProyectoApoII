@@ -1,0 +1,93 @@
+package interfaz;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.TextArea;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.JButton;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+
+import modelo.Jugador;
+
+public class PanelListaJugadores extends JDialog implements ActionListener {
+
+	private TextArea txtAMostrar;
+	private JButton ordenar;
+	private JButton buscar;
+	private JButton regresar;
+	public final static String ORDENAR = "ordenar";
+	public final static String BUSCAR = "buscar";
+	public final static String REGRESAR = "regresar";
+	private VentanaPrincipal ventanita;
+
+	public PanelListaJugadores(VentanaPrincipal ven) {
+
+		setLayout(new BorderLayout());
+		setTitle("Lista de Jugadores");
+		this.ventanita = ven;
+
+		txtAMostrar = new TextArea();
+
+		ordenar = new JButton("Ordenar");
+		ordenar.setActionCommand(ORDENAR);
+		ordenar.addActionListener(this);
+
+		buscar = new JButton("Buscar");
+		buscar.setActionCommand(BUSCAR);
+		buscar.addActionListener(this);
+
+		regresar = new JButton("Regresar");
+
+		JPanel panelAuxiliar = new JPanel();
+		panelAuxiliar.setLayout(new GridLayout(1, 3));
+		panelAuxiliar.add(ordenar);
+		panelAuxiliar.add(buscar);
+		panelAuxiliar.add(regresar);
+
+		add(panelAuxiliar, BorderLayout.NORTH);
+		add(txtAMostrar, BorderLayout.CENTER);
+
+		setSize(700, 515);
+
+	}
+
+	public TextArea getTxtAMostrar() {
+		return txtAMostrar;
+	}
+
+	public void setTxtAMostrar(TextArea txtAMostrar) {
+		this.txtAMostrar = txtAMostrar;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+
+		if (e.getActionCommand().equals(ORDENAR)) {
+
+			String[] opciones = { "Nombre", "Apellido" };
+			int respuesta = JOptionPane.showOptionDialog(null, "Por qué desea ordenar", "Ordenar",
+					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
+			agregarTexto(opciones[respuesta]);
+		}
+
+	}
+	public void agregarTexto(String opcion) {
+		txtAMostrar.append("");
+		if(opcion.equals("Nombre")) {
+			ArrayList <Jugador> lista =ventanita.cargarListaNombre();
+			
+			for (int i = 0; i < lista.size(); i++) {
+				txtAMostrar.append("Nombre: " +lista.get(i).getNombre()+ "\n");
+				
+				
+			}
+		}
+		
+	}
+
+}

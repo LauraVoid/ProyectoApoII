@@ -12,7 +12,16 @@ public class Rana {
 		this.color=col;
 		this.posX=posX;
 		this.posY=posY;
-		bala= new Bala("C",posX, posY,false);
+		crearBala();
+	}
+	/**
+	 * Crea una instancia Bala para la Rana
+	 * y agrega la Bala a la Rana
+	 */
+	public void crearBala() {
+		
+		Bala bala= new Bala("v",posX+63,posY+27,false);
+		setBala(bala);
 	}
 
 	public String getColor() {
@@ -46,6 +55,7 @@ public class Rana {
 	public void setBala(Bala bala) {
 		this.bala = bala;
 	}
+	
 	
 	
 	

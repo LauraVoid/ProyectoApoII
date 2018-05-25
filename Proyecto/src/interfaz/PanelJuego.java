@@ -11,6 +11,7 @@ import java.awt.geom.AffineTransform;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 
@@ -25,22 +26,23 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 	public  static final int MIN_POSY=65;
 	public  static final int MIN_POSX=-120;
 	public static final int SEGUNDA_POSY=255;
-	public static final String ROTAR="Rotar";
+	public static final String GUARDAR="guardar";
 	private double rotacion;
-	private JButton rotar;
+	private JButton menu;
 	
 	
 
 	public PanelJuego(VentanaPrincipal ventanita) {
 		this.ventanita=ventanita;
-		rotar= new JButton("Rotar");
-		add(rotar);
+		menu= new JButton("Guardar");
+		add(menu);
+		ventanita.iniciarMovimientoBola();
 
 		rana = new ImageIcon("./imagenes/Rana.png");
 		escenario = new ImageIcon("./imagenes/Escenario.png");
 		addMouseListener(this);
-		rotar.addActionListener(this);
-		rotar.setActionCommand(ROTAR);
+		menu.addActionListener(this);
+		menu.setActionCommand(GUARDAR);
 	}
 	
 	
@@ -62,7 +64,7 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 		
 		g2.drawImage(rana.getImage(), tx, null);
 		
-		g2.fillOval(ventanita.darBala().getPosX(), ventanita.darBala().getPosY(), 30, 30);
+		
 		
 		for(int i=0; i<ventanita.darBolas().size();i++) {
 			
@@ -72,16 +74,16 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 			g.fillOval(ventanita.darBolas().get(i).getPosX(), ventanita.darBolas().get(i).getPosY(), 30, 30);
 		    }
 		}
+		g2.setColor(Color.BLACK);
+		g2.fillOval(ventanita.darBala().getPosX(), ventanita.darBala().getPosY(), 30, 30);
 		
 	
 
 	}
 	
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals(ROTAR)) {
-			setRotacion(-16);
-					
-	        repaint();
+		if(e.getActionCommand().equals(GUARDAR)) {
+			
 		}
 		
 	
@@ -105,10 +107,11 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 		double yy= ventanita.yRana()-e.getY();
 		double angulo = yy/r;
 		double b = Math.toDegrees(angulo);
-		System.out.println("Para x = " + x + "   y = " + y);
-		System.out.println("hipotenusa = " + r);
-		System.out.println("angulo2 = " + b + "º");
+//		System.out.println("Para x = " + x + "   y = " + y);
+//		System.out.println("hipotenusa = " + r);
+//		System.out.println("angulo2 = " + b + "º");
 		setRotacion(b);
+		ventanita.crearBala();
 		ventanita.iniciarMovimientoBala(e.getX(), e.getY());
         
         
