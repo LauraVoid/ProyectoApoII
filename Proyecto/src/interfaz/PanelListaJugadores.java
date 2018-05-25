@@ -73,6 +73,7 @@ public class PanelListaJugadores extends JDialog implements ActionListener {
 			int respuesta = JOptionPane.showOptionDialog(null, "Por qué desea ordenar", "Ordenar",
 					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
 			agregarTexto(opciones[respuesta]);
+			System.out.println("aqui");
 		}
 
 	}
