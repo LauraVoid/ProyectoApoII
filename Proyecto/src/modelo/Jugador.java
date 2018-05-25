@@ -160,6 +160,12 @@ public class Jugador implements Comparable<Jugador> {
 		raiz = raiz.eliminarMoneda(eliminar);
 
 	}
+	/**
+	 * Compara los nombre de dos jugadores
+	 * @param Jugador a comparar
+	 * Jugador!=null 
+	 * @return retorna un número que indica lexicografixamente el nombre mayor
+	 */
 
 	@Override
 	public int compareTo(Jugador ju) {
