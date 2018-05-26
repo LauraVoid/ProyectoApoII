@@ -108,7 +108,7 @@ public class Bola {
 		posX -= num;
 	}
 
-	public void moverY2(int num) {
+	public void moverY2(double num) {
 		posY += num;
 	}
 

@@ -7,7 +7,8 @@ public class Bala extends Bola implements BolaMovible {
 	}
 
 	/**
-	 * Mueve la bala teniendo en cuenta los valores que ingresan por parametro
+	 * Mueve la bala teniendo en cuenta los valores que ingresan por parametro Mueve
+	 * la bala entre la parte superior izquierda
 	 * 
 	 * @param x
 	 *            Posicion en el eje X a donde se desea enviar la bala
@@ -16,27 +17,25 @@ public class Bala extends Bola implements BolaMovible {
 	 */
 
 	public void moverArribaIzquierda(int x, int y) {
+		
 
-		if (x > 50 && x <= 130) {
+		if (x >= 50 && x <= 130) {
 			moverX2(2);
 			moverY(1);
 			if (getPosX() + 20 <= x && getPosY() <= y) {
-				System.out.println("AI: I desaparecer");
 				setDesaparece(true);
 			}
-		} else if (x > 131 && x <= 260) {
+		} else if (x >= 131 && x <= 260) {
 			moverX2(1);
 			moverY(1);
 			if (getPosX() <= x && getPosY() <= y) {
-				System.out.println("AI: II desaparecer");
 				setDesaparece(true);
 
 			}
 
-		} else if (x > 261 && x <= 430) {
+		} else if (x >= 261 && x <= 430) {
 			moverY(1);
 			if (getPosY() <= y) {
-				System.out.println("AI: III desaparecer");
 				setDesaparece(true);
 
 			}
@@ -46,7 +45,8 @@ public class Bala extends Bola implements BolaMovible {
 	}
 
 	/**
-	 * Mueve la bala teniendo en cuenta los valores que ingresan por parametro
+	 * Mueve la bala teniendo en cuenta los valores que ingresan por parametro Mueve
+	 * la bala en el rango superior derecho
 	 * 
 	 * @param x
 	 *            Posicion en el eje X a donde se desea enviar la bala
@@ -60,23 +60,20 @@ public class Bala extends Bola implements BolaMovible {
 			moverX(1);
 			moverY(1);
 			if (getPosX() + 45 >= x && getPosY() <= y) {
-				System.out.println("AD: Idesaparecer");
 				setDesaparece(true);
 			}
 		} else if (x >= 591 && x <= 620) {
 			moverX(2);
 			moverY(1);
 			if (getPosX() + 20 >= x && getPosY() <= y) {
-				System.out.println("AD: II desaparecer");
 				setDesaparece(true);
 
 			}
 
-		} else if (x >= 621 && y >= 100 && y <= 180 && x <= 670) {
+		} else if (x >= 621 && y >= 60 && y <= 180 && x <= 670) {
 			moverX(2);
 			moverY(0.1);
 			if (getPosX() >= x) {
-				System.out.println("AD: III desaparecer");
 				setDesaparece(true);
 
 			}
@@ -88,16 +85,53 @@ public class Bala extends Bola implements BolaMovible {
 	@Override
 	public void mover(int x, int y) {
 
-		if (x >= 621 && y >= 181 && y <= 300 && x <= 670) {
-			moverX(2);
+		if (x >= 589 && y >= 181 && y <= 310 && x <= 671) {
+			moverX(1);
 			if (getPosX() >= x) {
-				System.out.println("Mover: I desaparecer");
 				setDesaparece(true);
 
 			}
 
-		} else if (x >= 621 && y >= 181 && y <= 300 && x <= 670) {
+		} else if (x >= 550 && y >= 311 && y <= 400 && x <= 700) {
+			moverX(2);
+			moverY2(1);
+			if (getPosX() >= x) {
+				setDesaparece(true);
+			}
+		} else if (x >= 421 && y >= 350 && y <= 390 && x <= 550) {
+			moverX(1);
+			moverY2(1);
+			if (getPosY() >= y) {
+				setDesaparece(true);
+			}
+		}
 
+	}
+
+	public void moverAbajo(int x, int y) {
+		
+
+		if (x >= 280 && y >= 350 && y <= 390 && x <= 550) {
+			moverY2(1);
+			if (getPosY() >= y) {
+				setDesaparece(true);
+
+			}
+		} else if (x >= 50 && y >= 350 && y <= 380 && x <= 280) {
+			moverY2(1);
+			moverX2(1);
+			if (getPosX() - 100 <= x && getPosY() >= y) {
+				setDesaparece(true);
+
+			}
+		}
+		else if (x >= 60 && y >= 220 && y <= 280 && x <= 300) {
+			
+			moverX2(1);
+			if (getPosX() <= x) {
+				setDesaparece(true);
+
+			}
 		}
 
 	}
