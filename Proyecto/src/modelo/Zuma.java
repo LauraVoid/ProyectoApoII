@@ -6,6 +6,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
+import excepciones.NoExisteBolaException;
 import excepciones.NoExisteException;
 import interfaz.PanelJuego;
 
@@ -20,18 +21,18 @@ public class Zuma {
 
 		primerBola = null;
 		
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), 0, PanelJuego.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -30, PanelJuego.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -60, PanelJuego.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -90, PanelJuego.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -120, PanelJuego.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -150, PanelJuego.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -180, PanelJuego.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -210, PanelJuego.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -240, PanelJuego.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -270, PanelJuego.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -300, PanelJuego.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -330, PanelJuego.MAX_POSY, false));
+		addBolaAlFinal(new BolaNormal(darColorAleatorio(), 0, Bola.MAX_POSY, false));
+		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -30, Bola.MAX_POSY, false));
+		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -60, Bola.MAX_POSY, false));
+		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -90, Bola.MAX_POSY, false));
+		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -120, Bola.MAX_POSY, false));
+		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -150, Bola.MAX_POSY, false));
+		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -180, Bola.MAX_POSY, false));
+		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -210, Bola.MAX_POSY, false));
+		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -240, Bola.MAX_POSY, false));
+		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -270, Bola.MAX_POSY, false));
+		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -300, Bola.MAX_POSY, false));
+		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -330, Bola.MAX_POSY, false));
 		
 		ranita = new RanaNormal("c", 290, 200);
 	}
@@ -96,14 +97,15 @@ public class Zuma {
 	 * @param posY
 	 * @return bola buscada
 	 */
-	public Bola buscarBolaPosicion(int posX, int posY) {
+	public Bola buscarBolaPosicion(int posX, int posY) throws NoExisteBolaException{
 		Bola actual =primerBola;
 		Bola buscada= null;
 		
-		while(actual!=null&&!(actual.areaX(posX)&&actual.areaY(posY))) {
+		while(actual!=null&&!(actual.areaBola(posX, posY))) {
 			actual=actual.getSiguiente();
 		}
 		buscada=actual;
+		if(buscada==null) throw new NoExisteBolaException();
 		
 		return buscada;
 
@@ -114,49 +116,66 @@ public class Zuma {
 	 * @param nueva
 	 * @param posX
 	 * @param posY
-	 * @throws NoExisteException
+	 * @throws NoExisteBolaException
 	 */
-	public void addBolaAntesDe(Bola nueva,int posX, int posY) throws NoExisteException{
+	public void addBolaAntesDe(Bola nueva,int posX, int posY) throws NoExisteBolaException{
 		Bola actual =primerBola;
 
 		if (primerBola == null) {
-			throw new NoExisteException("No existe la bola");
+			throw new NoExisteBolaException();
 		} else {
-			aumentarPosiciones(posX, posY);
-			nueva.setSiguiente(buscarBolaPosicion( posX,  posY));
-			buscarBolaPosicion( posX,  posY).getAnterior().setSiguiente(nueva);
-			nueva.setAnterior(buscarBolaPosicion( posX,  posY).getAnterior());
-			
-			
-		
+			    aumentarPosiciones(posX, posY);
+				nueva.setSiguiente(buscarBolaPosicion( posX,  posY));
+				buscarBolaPosicion( posX,  posY).getAnterior().setSiguiente(nueva);
+				nueva.setAnterior(buscarBolaPosicion( posX,  posY).getAnterior());
+				buscarBolaPosicion( posX,  posY).setAnterior(nueva);
+			} 
 		}
 
-	}
 	/**
 	 * Retorna la posicion X de la bola anterior a la bola seleccionada
 	 * @param posX
+	 * @param posYS
+	 * @return pos Bola
+	 * @throws NoExisteBolaException
+	 */
+	public int darPosXBolaAnterior(int posX, int posY) throws NoExisteBolaException{
+		
+		return buscarBolaPosicion( posX,  posY).getAnterior().getPosX();
+		
+	}
+	/**
+	 * Retorna la posicion Y de la bola anterior a la bola seleccionada
+	 * @param posX
 	 * @param posY
 	 * @return
+	 * @throws NoExisteBolaException
 	 */
-	public int darPosXBolaAnterior(int posX, int posY) {
-		return buscarBolaPosicion( posX,  posY).getAnterior().getPosX();
-	}
-	public int darPosYBolaSeleccionada(int posX, int posY) {
-		return buscarBolaPosicion( posX,  posY).getPosY();
+	public int darPosYBolaAnterior(int posX, int posY) throws NoExisteBolaException{
+		return buscarBolaPosicion( posX,  posY).getAnterior().getPosY();
 	}
 	
 	/**
 	 * Aumenta las posiciones de las bolas, empezando desde la primera hasta la seleccionada
 	 * @param posX
 	 * @param posY
+	 * 
 	 */
-	public void aumentarPosiciones(int posX, int posY) {
+	//Aqui estoy tratando de que cuando este abajo aumente el x de las bolas desde la primera hasta la que selecciono, si esta a la izquierda que le disminuya a y 
+	// a las mismas bolas, pero eso se descontrola.
+	public void aumentarPosiciones(int posX, int posY) throws NoExisteBolaException{
 		Bola actual =primerBola;
+		
 		while(actual!=null&&(actual!=buscarBolaPosicion( posX,  posY))){
-			actual.setPosX(actual.getPosX()+30);
+			
+			if(actual.getPosX()>=Bola.MIN_POSX&&actual.getPosY()==Bola.MAX_POSY) actual.setPosX(actual.getPosX()+Bola.ANCHO_BOLA);
+			if((actual.getPosX()<=Bola.MAX_POSX)&&(actual.getPosY()<=Bola.MIN_POSY)) actual.setPosY(actual.getPosY()-Bola.ALTO_BOLA);
+		     if((actual.getPosY()<=Bola.MIN_POSY)&&(actual.getPosX()<=Bola.MAX_POSX)) actual.setPosX(actual.getPosX()-Bola.ANCHO_BOLA);
+			 if((actual.getPosX()<=Bola.ANCHO_BOLA)&&(actual.getPosY()<=Bola.SEGUNDA_POSY)) actual.setPosY(actual.getPosY()+Bola.ALTO_BOLA);
 			actual=actual.getSiguiente();
 		}
-	}
+		}
+	
 	
 	
 	/**

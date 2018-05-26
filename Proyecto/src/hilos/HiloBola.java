@@ -24,7 +24,7 @@ public class HiloBola extends Thread{
 			BolaNormal bola = (BolaNormal) actual;
 			bola.mover(0,0);
 			try {
-				Thread.sleep(5);
+				Thread.sleep(1);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -14,6 +14,7 @@ import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
+import excepciones.NoExisteBolaException;
 import modelo.Bola;
 import modelo.Zuma;
 
@@ -24,11 +25,6 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 	private ImageIcon rana;
 	private ImageIcon escenario;
 
-	public static final int MAX_POSY=365;
-	public  static final int MAX_POSX=655;
-	public  static final int MIN_POSY=65;
-	public  static final int MIN_POSX=-330;
-	public static final int SEGUNDA_POSY=255;
 	public static final String GUARDAR="guardar";
 	private double rotacion;
 	private JButton menu;
@@ -122,10 +118,16 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 		ventanita.crearBala();
 		ventanita.iniciarMovimientoBala(e.getX(), e.getY());
 		
-		if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.AMARILLO)System.out.println("Amarillo");
-		else if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.AZUL)System.out.println("Azul");
-		else if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.ROJO)System.out.println("Rojo");
-		else if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.VERDE)System.out.println("Verde");
+		try {
+			if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.AMARILLO)System.out.println("Amarillo");
+			else if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.AZUL)System.out.println("Azul");
+			else if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.ROJO)System.out.println("Rojo");
+			else if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.VERDE)System.out.println("Verde");
+		} catch (NoExisteBolaException e1) {
+			// TODO Auto-generated catch block
+			ImageIcon icon = new ImageIcon("./imagenes/ranita.png");
+			JOptionPane.showMessageDialog(null, e1.getMessage(), "LANZA MEJOR", JOptionPane.WARNING_MESSAGE, icon);
+		}
         ventanita.agregarBolaLanzada(e.getX(), e.getY());
         System.out.println(ventanita.numeroBolas());
         

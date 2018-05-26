@@ -10,7 +10,14 @@ public class Bola {
     public static final int ROJO =2;
     public static final int AZUL =3;
     public static final int VERDE =4;
-    
+
+	public static final int MAX_POSY=365;
+	public  static final int MAX_POSX=655;
+	public  static final int MIN_POSY=65;
+	public  static final int MIN_POSX=-330;
+	public static final int SEGUNDA_POSY=255;
+	public static final int ANCHO_BOLA =30;
+	public static final int ALTO_BOLA =30;
 	private int color;
 	
 	private int posX;
@@ -18,10 +25,10 @@ public class Bola {
 	private boolean desaparece;
 	private Bola siguiente;
 	private Bola anterior;
-    private int x = PanelJuego.MIN_POSX;
-	private int y = PanelJuego.MAX_POSY;
-	private int x2 = PanelJuego.MAX_POSX;
-	private int y2 = PanelJuego.MIN_POSY;
+    private int x = MIN_POSX;
+	private int y = MAX_POSY;
+	private int x2 = MAX_POSX;
+	private int y2 = MIN_POSY;
 
 	public Bola(int col, int posX, int posY, boolean desaparece) {
 		siguiente=null;
@@ -129,23 +136,19 @@ public class Bola {
 	}
 	
 	/**
-	 * Verifica si la bola se encuentra en el rango especificado
+	 * Verifica si la bola se encuentra en el rango especificado l
 	 * @param posX
-	 * @return true, si la bola esta en ese rango y false en caso contrario
-	 */
-	public boolean areaX(int posX) {
-		return ((posX>this.getPosX())&&(posX<this.getPosX()+30)) ;
-	}
-	
-	/**
-	 * Verifica si la bola se encuentra en el rango especificado
 	 * @param posY
 	 * @return true, si la bola esta en ese rango y false en caso contrario
 	 */
-	public boolean areaY(int posY) {
-		return ((posY>this.getPosY())&&(posY<this.getPosY()+30)) ;
-		
+	public boolean areaBola(int posX, int posY) {
+		return ((posX>=this.getPosX())&&(posX<=this.getPosX()+ANCHO_BOLA))&&((posY>=this.getPosY())&&(posY<=this.getPosY()+ALTO_BOLA)) ;
 	}
+	
+	
+
+	
+	
 	
 
 

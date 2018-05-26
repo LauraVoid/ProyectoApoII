@@ -3,9 +3,11 @@ package interfaz;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import excepciones.NoExisteBolaException;
 import excepciones.NoExisteException;
 import hilos.HiloBala;
 import hilos.HiloBola;
@@ -65,13 +67,13 @@ public class VentanaPrincipal extends JFrame {
 	public void agregarBolaLanzada(int posX, int posY) {
 		
 		try {
-			miZuma.addBolaAntesDe(new BolaNormal(5, miZuma.darPosXBolaAnterior(posX, posY), PanelJuego.MAX_POSY, false), posX, posY);
+			miZuma.addBolaAntesDe(new BolaNormal(5, miZuma.darPosXBolaAnterior(posX, posY), Bola.MAX_POSY, false), posX, posY);
 			System.out.println(miZuma.getPrimerBola().getSiguiente().getColor());
-		} catch (NoExisteException e) {
+		} catch (NoExisteBolaException e) {
 			// TODO Auto-generated catch block
 			e.getMessage();
 		}
-		panelJuego.repaint();
+		//panelJuego.repaint();
 	}
 
 	public void iniciarMovimientoBola() {
@@ -101,7 +103,8 @@ public class VentanaPrincipal extends JFrame {
 		System.exit(0);
 	}
 	
-	public Bola darBolaBuscada(int posX, int posY) {
+	public Bola darBolaBuscada(int posX, int posY) throws NoExisteBolaException {
+	
 		return miZuma.buscarBolaPosicion(posX, posY);
 	}
 	

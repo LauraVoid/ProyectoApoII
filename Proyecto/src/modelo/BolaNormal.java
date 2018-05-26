@@ -9,7 +9,42 @@ public class BolaNormal extends Bola implements BolaMovible{
 	}
 	
 	@Override
-	public void mover(int x, int y) {
+public void mover(int x, int y) {
+		
+		
+		if(getPosX()>=getX()&&getPosY()==getY()) {
+			
+			moverX(1);
+		}
+		if(getPosX()>=getX2()&&getPosY()<=getY()) {
+			
+		moverY(1);
+		
+		}
+		if(getPosY()<=getY2()) {
+			
+			moverX2(1);
+		}
+		if(getPosX()<=30&&getPosY()<=Bola.SEGUNDA_POSY) {
+			
+			moverY2(1);
+			
+			if(getPosY()>=Bola.SEGUNDA_POSY) {
+				setPosY(Bola.SEGUNDA_POSY);
+				setY(Bola.SEGUNDA_POSY);
+				setX2(300);
+			}
+		}
+		if(getPosX()>=300&&getPosX()<=360&&getPosY()>=Bola.SEGUNDA_POSY-40&&getPosY()<=Bola.SEGUNDA_POSY) {
+			setDesaparece(true);
+		}
+		
+		
+		
+		
+		
+	}
+	/**public void mover(int x, int y) {
 		
 		
 		if(getPosX()>=getX()&&getPosY()==getY()) {
@@ -43,7 +78,7 @@ public class BolaNormal extends Bola implements BolaMovible{
 		
 		
 		
-	}
+	}*/
 	
 	
 	
