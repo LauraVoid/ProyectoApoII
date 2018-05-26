@@ -100,7 +100,7 @@ public class Zuma {
 		Bola actual =primerBola;
 		Bola buscada= null;
 		
-		while(actual!=null&&(!actual.areaX(posX)&&actual.areaY(posY))) {
+		while(actual!=null&&!(actual.areaX(posX)&&actual.areaY(posY))) {
 			actual=actual.getSiguiente();
 		}
 		buscada=actual;
@@ -109,18 +109,68 @@ public class Zuma {
 
 	}
 	
+	/**
+	 * 
+	 * @param nueva
+	 * @param posX
+	 * @param posY
+	 * @throws NoExisteException
+	 */
 	public void addBolaAntesDe(Bola nueva,int posX, int posY) throws NoExisteException{
 		Bola actual =primerBola;
 
 		if (primerBola == null) {
 			throw new NoExisteException("No existe la bola");
 		} else {
+			aumentarPosiciones(posX, posY);
 			nueva.setSiguiente(buscarBolaPosicion( posX,  posY));
 			buscarBolaPosicion( posX,  posY).getAnterior().setSiguiente(nueva);
+			nueva.setAnterior(buscarBolaPosicion( posX,  posY).getAnterior());
+			
 			
 		
 		}
 
+	}
+	/**
+	 * Retorna la posicion X de la bola anterior a la bola seleccionada
+	 * @param posX
+	 * @param posY
+	 * @return
+	 */
+	public int darPosXBolaAnterior(int posX, int posY) {
+		return buscarBolaPosicion( posX,  posY).getAnterior().getPosX();
+	}
+	public int darPosYBolaSeleccionada(int posX, int posY) {
+		return buscarBolaPosicion( posX,  posY).getPosY();
+	}
+	
+	/**
+	 * Aumenta las posiciones de las bolas, empezando desde la primera hasta la seleccionada
+	 * @param posX
+	 * @param posY
+	 */
+	public void aumentarPosiciones(int posX, int posY) {
+		Bola actual =primerBola;
+		while(actual!=null&&(actual!=buscarBolaPosicion( posX,  posY))){
+			actual.setPosX(actual.getPosX()+30);
+			actual=actual.getSiguiente();
+		}
+	}
+	
+	
+	/**
+	 * Cuenta el numero de bolas de la lista
+	 * @return
+	 */
+	public int contarBolas() {
+		Bola actual =primerBola;
+		int contador=0;
+		while(actual!=null){
+			contador++;
+			actual=actual.getSiguiente();
+		}
+		return contador;
 	}
 
 

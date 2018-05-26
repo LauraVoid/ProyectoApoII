@@ -123,10 +123,11 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 		ventanita.iniciarMovimientoBala(e.getX(), e.getY());
 		
 		if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.AMARILLO)System.out.println("Amarillo");
-		if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.AZUL)System.out.println("Azul");
-		if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.ROJO)System.out.println("Rojo");
-		if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.VERDE)System.out.println("Verde");
-        
+		else if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.AZUL)System.out.println("Azul");
+		else if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.ROJO)System.out.println("Rojo");
+		else if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.VERDE)System.out.println("Verde");
+        ventanita.agregarBolaLanzada(e.getX(), e.getY());
+        System.out.println(ventanita.numeroBolas());
         
 
 

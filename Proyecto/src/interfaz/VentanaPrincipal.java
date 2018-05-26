@@ -6,10 +6,12 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
+import excepciones.NoExisteException;
 import hilos.HiloBala;
 import hilos.HiloBola;
 import modelo.Bala;
 import modelo.Bola;
+import modelo.BolaNormal;
 import modelo.Jugador;
 import modelo.Zuma;
 
@@ -57,8 +59,19 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public void crearBala() {
-
 		miZuma.getRanita().crearBala();
+	}
+	
+	public void agregarBolaLanzada(int posX, int posY) {
+		
+		try {
+			miZuma.addBolaAntesDe(new BolaNormal(5, miZuma.darPosXBolaAnterior(posX, posY), PanelJuego.MAX_POSY, false), posX, posY);
+			System.out.println(miZuma.getPrimerBola().getSiguiente().getColor());
+		} catch (NoExisteException e) {
+			// TODO Auto-generated catch block
+			e.getMessage();
+		}
+		panelJuego.repaint();
 	}
 
 	public void iniciarMovimientoBola() {
@@ -90,6 +103,10 @@ public class VentanaPrincipal extends JFrame {
 	
 	public Bola darBolaBuscada(int posX, int posY) {
 		return miZuma.buscarBolaPosicion(posX, posY);
+	}
+	
+	public int numeroBolas() {
+		return miZuma.contarBolas();
 	}
 
 	public void cargar(String nombre) throws NullPointerException {

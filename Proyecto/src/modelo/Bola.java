@@ -1,5 +1,6 @@
 package modelo;
 
+
 import interfaz.PanelJuego;
 
 public class Bola {
