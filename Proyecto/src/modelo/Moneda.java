@@ -99,6 +99,10 @@ public class Moneda implements Contable {
 			der = der.eliminarMoneda(eliminar);
 		return this;
 	}
+	/**
+	 * Cuenta la cantidad de monedas que tiene el árbol
+	 * @return cantidad de monedas
+	 */
 	
 	@Override
 	public int contar() {

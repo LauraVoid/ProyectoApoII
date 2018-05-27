@@ -13,8 +13,8 @@ class BolaTest {
 
 	private void setUpUno() {
 
-		Zuma zuma = new Zuma();
-		bola = new Bola(1, 0, 0, false);
+		Zuma zuma = new Zuma("n");
+		bola = new Bola(1, 100, 150, false);
 		zuma.setPrimerBola(bola);
 	}
 
@@ -24,7 +24,7 @@ class BolaTest {
 
 		bola.moverX(1);
 
-		assertTrue(bola.getPosX() == 1);
+		assertTrue(bola.getPosX() == 101);
 	}
 	
     @Test
@@ -34,7 +34,7 @@ class BolaTest {
 
 		bola.moverX2(1);
 
-		assertTrue(bola.getPosX() == -1);
+		assertTrue(bola.getPosX() == 99);
 
 	}
     @Test
@@ -42,7 +42,7 @@ class BolaTest {
     	setUpUno();
     	
     	bola.moverY(1);
-    	assertTrue(bola.getPosY() == -1);
+    	assertTrue(bola.getPosY() == 149);
     	
     }
     @Test
@@ -50,7 +50,18 @@ class BolaTest {
     	setUpUno();
     	
     	bola.moverY2(1);
-    	assertTrue(bola.getPosY() ==1);
+    	assertTrue(bola.getPosY() ==151);
+    	
+    }
+    @Test
+    public void areaBolaTest() {
+    	setUpUno();
+    	Boolean resultado1= bola.areaBola(100, 150);
+    	Boolean resultado2= bola.areaBola(10, 200);
+    	
+    	assertTrue(resultado1);
+    	assertFalse(resultado2);
+    	
     	
     }
 

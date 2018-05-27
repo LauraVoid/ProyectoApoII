@@ -5,6 +5,10 @@ import java.util.ArrayList;
 
 public class Jugador implements Comparable<Jugador>, Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String nombre;
 	private int edad;
 	private int puntos;

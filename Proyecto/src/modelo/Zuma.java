@@ -41,6 +41,9 @@ public class Zuma implements Contable{
 
 		ranita = new RanaNormal("c", 290, 200);
 	}
+	public Zuma(String n) {
+		
+	}
 
 	public Jugador getPrimerJugador() {
 		return primerJugador;
@@ -313,7 +316,7 @@ public class Zuma implements Contable{
 	}
 
 	/**
-	 * Retorna la lista ordenada por apellido de cada Jugador
+	 * Retorna la lista ordenada por edad de cada Jugador
 	 * 
 	 * @return lista ordenada lista!=nulll
 	 */
@@ -326,6 +329,7 @@ public class Zuma implements Contable{
 			for (int j = 0; j < i - 1; j++) {
 
 				if (new ComparadorEdad().compare(lista.get(j), lista.get(j + 1)) > 0) {
+					
 					Jugador temp = lista.get(j);
 
 					lista.set(j, lista.get(j + 1));
@@ -367,7 +371,7 @@ public class Zuma implements Contable{
 
 		int tam = lista.size();
 		for (int i = 1; i < tam; i++) {
-			for (int j = i; j > 0 && lista.get(i - 1).getPosX() > lista.get(j).getPosX(); j--) {
+			for (int j = i; j > 0 && lista.get(j - 1).getPosX() > lista.get(j).getPosX(); j--) {
 
 				Bola tem = lista.get(j);
 				lista.set(j, lista.get(j - 1));
@@ -376,7 +380,6 @@ public class Zuma implements Contable{
 			}
 
 		}
-
 		return lista;
 	}
 
@@ -390,7 +393,7 @@ public class Zuma implements Contable{
 
 		int tam = lista.size();
 		for (int i = 1; i < tam; i++) {
-			for (int j = i; j > 0 && lista.get(i - 1).getPosY() > lista.get(j).getPosY(); j--) {
+			for (int j = i; j > 0 && lista.get(j - 1).getPosY() > lista.get(j).getPosY(); j--) {
 
 				Bola tem = lista.get(j);
 				lista.set(j, lista.get(j - 1));
@@ -399,7 +402,7 @@ public class Zuma implements Contable{
 			}
 
 		}
-
+		
 		return lista;
 	}
 
