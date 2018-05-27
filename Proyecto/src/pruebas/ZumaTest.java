@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import excepciones.NoExisteException;
+import modelo.BolaNormal;
 import modelo.Jugador;
 import modelo.Rana;
 import modelo.Zuma;
@@ -111,6 +112,13 @@ class ZumaTest {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+	}
+	public void bolasOrdenadaYTest() {
+		
+		setUpUno();
+//		BolaNormal bola1= new BolaNormal()
+		
 		
 	}
 	
