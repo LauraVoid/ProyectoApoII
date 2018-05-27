@@ -3,15 +3,15 @@ package modelo;
 public class Jugador implements Comparable<Jugador> {
 
 	private String nombre;
-	private String apellido;
+	private int edad;
 	private int puntos;
 	private Jugador siguiente;
 	private Jugador anterior;
 	private Moneda raiz;
 
-	public Jugador(String nom, String ape, int pu) {
+	public Jugador(String nom, int edad, int pu) {
 		this.nombre = nom;
-		this.apellido = ape;
+		this.edad = edad;
 		this.puntos = pu;
 		raiz = null;
 	}
@@ -23,13 +23,14 @@ public class Jugador implements Comparable<Jugador> {
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
 
-	public String getApellido() {
-		return apellido;
+	public int getEdad() {
+		return edad;
 	}
 
-	public void setApellido(String apellido) {
-		this.apellido = apellido;
+	public void setEdad(int edad) {
+		this.edad = edad;
 	}
 
 	public int getPuntos() {
@@ -47,6 +48,7 @@ public class Jugador implements Comparable<Jugador> {
 	public void setSiguiente(Jugador siguiente) {
 		this.siguiente = siguiente;
 	}
+	
 
 	/**
 	 * Returna el Jugador anterior segun la lista
