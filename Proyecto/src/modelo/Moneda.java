@@ -1,6 +1,6 @@
 package modelo;
 
-public class Moneda {
+public class Moneda implements Contable {
 	
 	private Moneda der;
 	private Moneda izq;
@@ -98,6 +98,16 @@ public class Moneda {
 
 			der = der.eliminarMoneda(eliminar);
 		return this;
+	}
+	
+	@Override
+	public int contar() {
+		
+		int p1= (izq==null)? 0:izq.contar();
+		int p2= (der==null)? 0:der.contar();
+		
+		return p1+p2+1;
+		
 	}
 	
 

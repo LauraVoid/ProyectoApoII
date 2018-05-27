@@ -70,7 +70,6 @@ public class VentanaPrincipal extends JFrame {
 			miZuma.addBolaAntesDe(new BolaNormal(5, miZuma.darPosXBolaAnterior(posX, posY), Bola.MAX_POSY, false), posX, posY);
 			System.out.println(miZuma.getPrimerBola().getSiguiente().getColor());
 		} catch (NoExisteBolaException e) {
-			// TODO Auto-generated catch block
 			e.getMessage();
 		}
 		//panelJuego.repaint();
@@ -109,7 +108,7 @@ public class VentanaPrincipal extends JFrame {
 	}
 	
 	public int numeroBolas() {
-		return miZuma.contarBolas();
+		return miZuma.contar();
 	}
 
 	public void cargar(String nombre) throws NullPointerException {

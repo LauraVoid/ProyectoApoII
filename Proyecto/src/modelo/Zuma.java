@@ -1,18 +1,23 @@
 package modelo;
 
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import excepciones.NoExisteBolaException;
 import excepciones.NoExisteException;
-import interfaz.PanelJuego;
 
-public class Zuma {
+public class Zuma implements Contable{
 
-	
 	private Jugador primerJugador;
 	private Bola primerBola;
 	private Rana ranita;
@@ -20,7 +25,7 @@ public class Zuma {
 	public Zuma() {
 
 		primerBola = null;
-		
+
 		addBolaAlFinal(new BolaNormal(darColorAleatorio(), 0, Bola.MAX_POSY, false));
 		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -30, Bola.MAX_POSY, false));
 		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -60, Bola.MAX_POSY, false));
@@ -33,11 +38,10 @@ public class Zuma {
 		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -270, Bola.MAX_POSY, false));
 		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -300, Bola.MAX_POSY, false));
 		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -330, Bola.MAX_POSY, false));
-		
+
 		ranita = new RanaNormal("c", 290, 200);
 	}
-	
-	
+
 	public Jugador getPrimerJugador() {
 		return primerJugador;
 	}
@@ -45,7 +49,7 @@ public class Zuma {
 	public void setPrimerJugador(Jugador primerJugador) {
 		this.primerJugador = primerJugador;
 	}
-	
+
 	public Rana getRanita() {
 		return ranita;
 	}
@@ -61,56 +65,59 @@ public class Zuma {
 	public void setPrimerBola(Bola primerBola) {
 		this.primerBola = primerBola;
 	}
-	/** Retorna un numero aleatorio entre 4 y 1 en el cada uno representa
-	 * un color 
+
+	/**
+	 * Retorna un numero aleatorio entre 4 y 1 en el cada uno representa un color
+	 * 
 	 * @return int color
 	 */
 	public int darColorAleatorio() {
-	      return (int) (Math.random() * (5 - 1)+1);
+		return (int) (Math.random() * (5 - 1) + 1);
 	}
-	
+
 	/**
-	 * Agrega una nueva bola al final de la lista enlazada 
+	 * Agrega una nueva bola al final de la lista enlazada
 	 * 
 	 * @param nueva
 	 *            Bola nueva !=null
 	 */
 	public void addBolaAlFinal(Bola nueva) {
-		Bola actual =primerBola;
+		Bola actual = primerBola;
 
 		if (actual == null) {
 			setPrimerBola(nueva);
 		} else {
-			while(actual.getSiguiente()!=null) {
-				actual=actual.getSiguiente();
+			while (actual.getSiguiente() != null) {
+				actual = actual.getSiguiente();
 			}
-		actual.setSiguiente(nueva);
-		nueva.setAnterior(actual);
+			actual.setSiguiente(nueva);
+			nueva.setAnterior(actual);
 		}
 
 	}
-	
-	
+
 	/**
 	 * Localiza la bola que se encuentre en esa area seleccionada
+	 * 
 	 * @param posX
 	 * @param posY
 	 * @return bola buscada
 	 */
-	public Bola buscarBolaPosicion(int posX, int posY) throws NoExisteBolaException{
-		Bola actual =primerBola;
-		Bola buscada= null;
-		
-		while(actual!=null&&!(actual.areaBola(posX, posY))) {
-			actual=actual.getSiguiente();
+	public Bola buscarBolaPosicion(int posX, int posY) throws NoExisteBolaException {
+		Bola actual = primerBola;
+		Bola buscada = null;
+
+		while (actual != null && !(actual.areaBola(posX, posY))) {
+			actual = actual.getSiguiente();
 		}
-		buscada=actual;
-		if(buscada==null) throw new NoExisteBolaException();
-		
+		buscada = actual;
+		if (buscada == null)
+			throw new NoExisteBolaException();
+
 		return buscada;
 
 	}
-	
+
 	/**
 	 * 
 	 * @param nueva
@@ -118,80 +125,91 @@ public class Zuma {
 	 * @param posY
 	 * @throws NoExisteBolaException
 	 */
-	public void addBolaAntesDe(Bola nueva,int posX, int posY) throws NoExisteBolaException{
-		Bola actual =primerBola;
+	public void addBolaAntesDe(Bola nueva, int posX, int posY) throws NoExisteBolaException {
+		Bola actual = primerBola;
 
 		if (primerBola == null) {
 			throw new NoExisteBolaException();
 		} else {
-			    aumentarPosiciones(posX, posY);
-				nueva.setSiguiente(buscarBolaPosicion( posX,  posY));
-				buscarBolaPosicion( posX,  posY).getAnterior().setSiguiente(nueva);
-				nueva.setAnterior(buscarBolaPosicion( posX,  posY).getAnterior());
-				buscarBolaPosicion( posX,  posY).setAnterior(nueva);
-			} 
+			aumentarPosiciones(posX, posY);
+
+			nueva.setSiguiente(buscarBolaPosicion(posX, posY));
+			buscarBolaPosicion(posX, posY).getAnterior().setSiguiente(nueva);
+			nueva.setAnterior(buscarBolaPosicion(posX, posY).getAnterior());
+			buscarBolaPosicion(posX, posY).setAnterior(nueva);
 		}
+	}
 
 	/**
 	 * Retorna la posicion X de la bola anterior a la bola seleccionada
+	 * 
 	 * @param posX
 	 * @param posYS
 	 * @return pos Bola
 	 * @throws NoExisteBolaException
 	 */
-	public int darPosXBolaAnterior(int posX, int posY) throws NoExisteBolaException{
-		
-		return buscarBolaPosicion( posX,  posY).getAnterior().getPosX();
-		
+	public int darPosXBolaAnterior(int posX, int posY) throws NoExisteBolaException {
+
+		return buscarBolaPosicion(posX, posY).getAnterior().getPosX();
+
 	}
+
 	/**
 	 * Retorna la posicion Y de la bola anterior a la bola seleccionada
+	 * 
 	 * @param posX
 	 * @param posY
 	 * @return
 	 * @throws NoExisteBolaException
 	 */
-	public int darPosYBolaAnterior(int posX, int posY) throws NoExisteBolaException{
-		return buscarBolaPosicion( posX,  posY).getAnterior().getPosY();
+	public int darPosYBolaAnterior(int posX, int posY) throws NoExisteBolaException {
+		return buscarBolaPosicion(posX, posY).getAnterior().getPosY();
 	}
-	
+
 	/**
-	 * Aumenta las posiciones de las bolas, empezando desde la primera hasta la seleccionada
+	 * Aumenta las posiciones de las bolas, empezando desde la primera hasta la
+	 * seleccionada
+	 * 
 	 * @param posX
 	 * @param posY
 	 * 
 	 */
-	//Aqui estoy tratando de que cuando este abajo aumente el x de las bolas desde la primera hasta la que selecciono, si esta a la izquierda que le disminuya a y 
+	// Aqui estoy tratando de que cuando este abajo aumente el x de las bolas desde
+	// la primera hasta la que selecciono, si esta a la izquierda que le disminuya a
+	// y
 	// a las mismas bolas, pero eso se descontrola.
-	public void aumentarPosiciones(int posX, int posY) throws NoExisteBolaException{
-		Bola actual =primerBola;
-		
-		while(actual!=null&&(actual!=buscarBolaPosicion( posX,  posY))){
-			
-			if(actual.getPosX()>=Bola.MIN_POSX&&actual.getPosY()==Bola.MAX_POSY) actual.setPosX(actual.getPosX()+Bola.ANCHO_BOLA);
-			if((actual.getPosX()<=Bola.MAX_POSX)&&(actual.getPosY()<=Bola.MIN_POSY)) actual.setPosY(actual.getPosY()-Bola.ALTO_BOLA);
-		     if((actual.getPosY()<=Bola.MIN_POSY)&&(actual.getPosX()<=Bola.MAX_POSX)) actual.setPosX(actual.getPosX()-Bola.ANCHO_BOLA);
-			 if((actual.getPosX()<=Bola.ANCHO_BOLA)&&(actual.getPosY()<=Bola.SEGUNDA_POSY)) actual.setPosY(actual.getPosY()+Bola.ALTO_BOLA);
-			actual=actual.getSiguiente();
+	public void aumentarPosiciones(int posX, int posY) throws NoExisteBolaException {
+		Bola actual = primerBola;
+
+		while (actual != null && (actual != buscarBolaPosicion(posX, posY))) {
+
+			if (actual.getPosX() >= Bola.MIN_POSX && actual.getPosY() == Bola.MAX_POSY)
+				actual.setPosX(actual.getPosX() + Bola.ANCHO_BOLA);
+			if ((actual.getPosX() <= Bola.MAX_POSX) && (actual.getPosY() <= Bola.MIN_POSY))
+				actual.setPosY(actual.getPosY() - Bola.ALTO_BOLA);
+			if ((actual.getPosY() <= Bola.MIN_POSY) && (actual.getPosX() <= Bola.MAX_POSX))
+				actual.setPosX(actual.getPosX() - Bola.ANCHO_BOLA);
+			if ((actual.getPosX() <= Bola.ANCHO_BOLA) && (actual.getPosY() <= Bola.SEGUNDA_POSY))
+				actual.setPosY(actual.getPosY() + Bola.ALTO_BOLA);
+			actual = actual.getSiguiente();
 		}
-		}
-	
-	
-	
+	}
+
 	/**
 	 * Cuenta el numero de bolas de la lista
+	 * 
 	 * @return
 	 */
-	public int contarBolas() {
-		Bola actual =primerBola;
-		int contador=0;
-		while(actual!=null){
+	@Override
+	public int contar() {
+		Bola actual = primerBola;
+		int contador = 0;
+		while (actual != null) {
 			contador++;
-			actual=actual.getSiguiente();
+			actual = actual.getSiguiente();
 		}
 		return contador;
 	}
-
 
 	/**
 	 * Verifica si el primerJugador no existe, de lo contrario llama al método
@@ -238,16 +256,14 @@ public class Zuma {
 		if (primerJugador.getNombre().equals(nomJug)) {
 			return primerJugador;
 		} else {
-			if(primerJugador.buscarJugador(nomJug)==null) {
+			if (primerJugador.buscarJugador(nomJug) == null) {
 				throw new NoExisteException(nomJug);
-			}else{
-			return primerJugador.buscarJugador(nomJug);
-		}
+			} else {
+				return primerJugador.buscarJugador(nomJug);
+			}
 		}
 
 	}
-
-	
 
 	/**
 	 * retorna una lista con todos los jugadores
@@ -302,14 +318,14 @@ public class Zuma {
 	 * @return lista ordenada lista!=nulll
 	 */
 
-	public ArrayList<Jugador> listaOrdenadaApellido() {
+	public ArrayList<Jugador> listaOrdenadaEdad() {
 		ArrayList<Jugador> lista = darListaJugadores();
 		int tamanio = lista.size();
 
 		for (int i = tamanio; i > 0; i--) {
 			for (int j = 0; j < i - 1; j++) {
 
-				if (new ComparadorApellido().compare(lista.get(j), lista.get(j + 1)) > 0) {
+				if (new ComparadorEdad().compare(lista.get(j), lista.get(j + 1)) > 0) {
 					Jugador temp = lista.get(j);
 
 					lista.set(j, lista.get(j + 1));
@@ -325,6 +341,69 @@ public class Zuma {
 	}
 
 	/**
+	 * Crea una lista de Bolas
+	 * 
+	 * @return un ArrayList con las Bolas
+	 */
+	public ArrayList<Bola> darListaBolas() {
+		ArrayList<Bola> lista = new ArrayList<Bola>();
+		Bola bol = primerBola;
+		while (bol != null) {
+
+			lista.add(bol);
+			bol = bol.getSiguiente();
+		}
+		return lista;
+	}
+
+	/**
+	 * Ordena la lista de bolas segun el atributo X con el método de insercion
+	 * 
+	 * @return lista ordena de menor a mayor
+	 */
+
+	public ArrayList<Bola> bolasOrdenadaX() {
+		ArrayList<Bola> lista = darListaBolas();
+
+		int tam = lista.size();
+		for (int i = 1; i < tam; i++) {
+			for (int j = i; j > 0 && lista.get(i - 1).getPosX() > lista.get(j).getPosX(); j--) {
+
+				Bola tem = lista.get(j);
+				lista.set(j, lista.get(j - 1));
+				lista.set(j - 1, tem);
+
+			}
+
+		}
+
+		return lista;
+	}
+
+	/**
+	 * Ordena la lista de bolas segun el atributo Y con el método de insercion
+	 * 
+	 * @return lista ordena de menor a mayor
+	 */
+	public ArrayList<Bola> bolasOrdenadaY() {
+		ArrayList<Bola> lista = darListaBolas();
+
+		int tam = lista.size();
+		for (int i = 1; i < tam; i++) {
+			for (int j = i; j > 0 && lista.get(i - 1).getPosY() > lista.get(j).getPosY(); j--) {
+
+				Bola tem = lista.get(j);
+				lista.set(j, lista.get(j - 1));
+				lista.set(j - 1, tem);
+
+			}
+
+		}
+
+		return lista;
+	}
+
+	/**
 	 * Guarda el estado del juego actual
 	 * 
 	 * @param jugador
@@ -332,6 +411,8 @@ public class Zuma {
 	 */
 
 	public void serializar(Jugador jugador) {
+		
+//		jugador= new Jugador(jugador.getNombre(),jugador.getEdad(),jugador.getPuntos());
 
 		try {
 			FileOutputStream fileO = new FileOutputStream("Archivos/Datos.dat");
@@ -339,6 +420,7 @@ public class Zuma {
 			ObjectOutputStream objectO = new ObjectOutputStream(fileO);
 
 			objectO.writeObject(jugador);
+			
 			objectO.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -368,6 +450,72 @@ public class Zuma {
 		}
 
 		return descerializado;
+
+	}
+
+	/**
+	 * Guarda la informacion de la rana en un archivo de texto plano en el siguiente
+	 * formato: ColorRana, PosXRana,PosYRana
+	 * 
+	 * @param rana
+	 *            !=null
+	 */
+
+	public void escribirArchivo(Rana rana) {
+
+		String[] informacion = { rana.getColor(), rana.getPosX() + "", rana.getPosY()+"" };
+
+		File archivo = new File("Archivos/InformacionRana.txt/");
+
+		try {
+			FileWriter fEscritor = new FileWriter(archivo);
+			BufferedWriter bEscritor = new BufferedWriter(fEscritor);
+			for (int i = 0; i < informacion.length; i++) {
+				bEscritor.write(informacion[i]);
+				bEscritor.write(" ");
+
+			}
+
+			bEscritor.close();
+
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+
+	}
+	/**
+	 * Lee el archivo donde fue almacenada la informacion de la rana
+	 * @return nueva Rana nueva 
+	 */
+
+	public Rana leerArchivo() {
+		Rana nueva = null;
+		String linea="";
+
+		File archivo = new File("Archivos/InformacionRana.txt/");
+
+		try {
+			FileReader lector = new FileReader(archivo);
+			BufferedReader bR = new BufferedReader(lector);
+			linea = bR.readLine();
+
+
+			lector.close();
+			bR.close();
+
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+		} catch (IOException e) {
+
+			e.printStackTrace();
+		}
+		String[] datos=linea.split(" ");
+		
+		nueva=new Rana(datos[0],Integer.parseInt(datos[1]), Integer.parseInt(datos[2]));
+		
+		return nueva;
 
 	}
 

@@ -1,14 +1,11 @@
 package modelo;
 
-import interfaz.PanelJuego;
-
-public class BolaNormal extends Bola implements BolaMovible{
+public class BolaNormal extends Bola{
 
 	public BolaNormal(int col, int posX, int posY, boolean desaparece) {
 		super(col, posX, posY, desaparece);
 	}
 	
-	@Override
 public void mover(int x, int y) {
 		
 		

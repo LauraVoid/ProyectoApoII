@@ -56,6 +56,9 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 	public void paintComponent(Graphics g) {
 		
 		Graphics2D g2 = (Graphics2D)g;
+		
+		removeAll();
+		super.paintComponent(g2);
 		g2.drawImage(escenario.getImage(), 0, 0, null);
 		//AffineTransform tx = AffineTransform.getRotateInstance(rotacion, rana.getIconWidth()/2, rana.getIconHeight()/2);
 		AffineTransform tx = AffineTransform.getTranslateInstance(ventanita.xRana(), ventanita.yRana());

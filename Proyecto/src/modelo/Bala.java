@@ -1,6 +1,6 @@
 package modelo;
 
-public class Bala extends Bola implements BolaMovible {
+public class Bala extends Bola {
 
 	public Bala(int col, int posX, int posY, boolean desaparece) {
 		super(col, posX, posY, desaparece);
@@ -82,7 +82,6 @@ public class Bala extends Bola implements BolaMovible {
 
 	}
 
-	@Override
 	public void mover(int x, int y) {
 
 		if (x >= 589 && y >= 181 && y <= 310 && x <= 671) {

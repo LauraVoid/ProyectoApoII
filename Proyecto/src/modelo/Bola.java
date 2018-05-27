@@ -1,6 +1,8 @@
 package modelo;
 
 
+import java.util.ArrayList;
+
 import interfaz.PanelJuego;
 
 public class Bola {
@@ -144,6 +146,8 @@ public class Bola {
 	public boolean areaBola(int posX, int posY) {
 		return ((posX>=this.getPosX())&&(posX<=this.getPosX()+ANCHO_BOLA))&&((posY>=this.getPosY())&&(posY<=this.getPosY()+ALTO_BOLA)) ;
 	}
+	
+	
 	
 	
 
