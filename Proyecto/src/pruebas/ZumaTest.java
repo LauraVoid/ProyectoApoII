@@ -117,7 +117,7 @@ class ZumaTest {
 	public void bolasOrdenadaYTest() {
 		
 		setUpUno();
-//		BolaNormal bola1= new BolaNormal()
+		BolaNormal bola1= new BolaNormal(5,100,200,false);
 		
 		
 	}

@@ -1,6 +1,9 @@
 package modelo;
 
-public class Jugador implements Comparable<Jugador> {
+import java.io.Serializable;
+import java.util.ArrayList;
+
+public class Jugador implements Comparable<Jugador>, Serializable {
 
 	private String nombre;
 	private int edad;
@@ -172,6 +175,86 @@ public class Jugador implements Comparable<Jugador> {
 	@Override
 	public int compareTo(Jugador ju) {
 		return nombre.compareTo(ju.getNombre());
+	}
+	/**
+	 * Retorna el peso del árbol
+	 * 
+	 * @return cantidad de monedas del arbol
+	 */
+
+	public int cantidadMonedas() {
+
+		if (raiz == null) {
+			return 0;
+		} else
+			return raiz.contar();
+	}
+	/**
+	 * Retorna las monedas del arbol en una lista
+	 * 
+	 * @return lista con las monedas del arbol
+	 */
+
+	public ArrayList<Moneda> darListaMonedas() {
+		ArrayList<Moneda> lista = new ArrayList<Moneda>();
+
+		if (raiz != null) {
+
+			lista.add(raiz);
+			Moneda izq = raiz.getIzq();
+			Moneda der = raiz.getDer();
+
+			int cantidad = cantidadMonedas();
+
+			while (cantidad >= 0) {
+
+				if (izq != null) {
+					lista.add(izq);
+					izq = izq.getIzq();
+				}
+				if (der != null) {
+					lista.add(der);
+					der = der.getDer();
+				}
+				cantidad--;
+
+			}
+		}
+
+		return lista;
+
+	}
+	/**
+	 * Crea una lista con las monedas organizadas de menor a mayor con el método de
+	 * seleccion
+	 * 
+	 * @return lista con las monedas ordenadas
+	 */
+
+	public ArrayList<Moneda> darListaMonOrdenadaDen() {
+
+		ArrayList<Moneda> lista = darListaMonedas();
+		int tam = lista.size();
+
+		for (int i = 0; i < tam - 1; i++) {
+
+			Moneda menor = lista.get(i);
+			int num = 1;
+
+			for (int j = i + 1; j < tam; j++) {
+
+				if (lista.get(j).getDenominacion() < menor.getDenominacion()) {
+					menor = lista.get(j);
+					num = j;
+				}
+			}
+			Moneda tem = lista.get(i);
+			lista.set(i, menor);
+			lista.set(num, tem);
+
+		}
+
+		return lista;
 	}
 
 }
