@@ -34,6 +34,7 @@ public class VentanaPrincipal extends JFrame {
 		panelMenu = new PanelMenu(this);
 		panelLista = new PanelListaJugadores(this);
 		panelCarga= new PanelCarga();
+		panelJuego = new PanelJuego(this,0);
 		add(panelMenu, BorderLayout.CENTER);
 
 		setSize(700, 515);
@@ -42,7 +43,7 @@ public class VentanaPrincipal extends JFrame {
 
 	public void escenarioVisible() {
 
-		panelJuego = new PanelJuego(this);
+		
 		panelMenu.setVisible(false);
 		panelJuego.setVisible(true);
 		add(panelJuego, BorderLayout.CENTER);
@@ -68,17 +69,28 @@ public class VentanaPrincipal extends JFrame {
 		return miZuma.getRanita().getBala();
 	}
 
-	public void crearBala() {
-		miZuma.getRanita().crearBala();
-		miZuma.getRanita().getBala().setColor(miZuma.darColorAleatorio());
+	public void crearBala(int color) {
 		
+		
+		//System.out.println("Color" +posColor);
+//		miZuma.getRanita().crearBala(miZuma.darColorAleatorio());
+		
+//		miZuma.getRanita().crearBala(color);
+		System.out.println("crear Bola "+color);
+		miZuma.getRanita().crearBala(miZuma.getRanita().getColores()[color]);
+		Bala balita=miZuma.getRanita().getBala();
+		//System.out.println("c"+balita.getColores()[posColor]);
+		
+	}
+	public int[] darColores() {
+		return miZuma.getRanita().getColores();
 	}
 	
 	public void agregarBolaLanzada(int posX, int posY) {
 		
 		try {
 			miZuma.addBolaAntesDe(new BolaNormal(miZuma.getRanita().getBala().getColor(), miZuma.darPosXBolaAnterior(posX, posY), miZuma.darPosYBolaAnterior(posX, posY), false), posX, posY);
-			System.out.println(miZuma.getPrimerBola().getSiguiente().getColor());
+//			System.out.println("AgregarBola "+miZuma.getPrimerBola().getSiguiente().getColor());
 		} catch (NoExisteBolaException e) {
 			e.getMessage();
 		}
@@ -87,12 +99,15 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public void iniciarMovimientoBola() {
+		
 		HiloBola h = new HiloBola(miZuma, this);
 		h.start();
 	}
 
 	public void iniciarMovimientoBala(int x, int y) {
 		System.out.println("X " + x + " Y " + y);
+		
+		
 		HiloBala h = new HiloBala(miZuma, this, x, y);
 		h.start();
 

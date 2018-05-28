@@ -21,7 +21,7 @@ class RanaTest {
 	@Test
 	public void crearBalaTest() {
 		setUpUno();
-		ranita.crearBala();
+		ranita.crearBala(0);
 		assertTrue(ranita.getBala()!=null);
 		
 		

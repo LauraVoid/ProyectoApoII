@@ -18,23 +18,20 @@ import excepciones.NoExisteBolaException;
 import modelo.Bola;
 import modelo.Zuma;
 
-
-public class PanelJuego extends JPanel implements MouseListener,ActionListener{
-	
-    private VentanaPrincipal ventanita;
+public class PanelJuego extends JPanel implements MouseListener, ActionListener {
+	public static final String GUARDAR = "guardar";
+	private VentanaPrincipal ventanita;
 	private ImageIcon rana;
 	private ImageIcon escenario;
-
-	public static final String GUARDAR="guardar";
 	private double rotacion;
 	private JButton menu;
-	
-	
+	private int color;
 
-	public PanelJuego(VentanaPrincipal ventanita) {
-		this.ventanita=ventanita;
-		menu= new JButton("Guardar");
+	public PanelJuego(VentanaPrincipal ventanita, int a) {
+		this.ventanita = ventanita;
+		menu = new JButton("Guardar");
 		add(menu);
+		this.color = a;
 		ventanita.iniciarMovimientoBola();
 
 		rana = new ImageIcon("./imagenes/Rana.png");
@@ -43,114 +40,129 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 		menu.addActionListener(this);
 		menu.setActionCommand(GUARDAR);
 	}
-	
-	
 
 	public double getRotacion() {
 		return rotacion;
 	}
+
 	public void setRotacion(double rotacion) {
 		this.rotacion = rotacion;
 	}
-	
+
 	public void paintComponent(Graphics g) {
-		
-		Graphics2D g2 = (Graphics2D)g;
-		
+
+		Graphics2D g2 = (Graphics2D) g;
+
 		removeAll();
 		super.paintComponent(g2);
 		g2.drawImage(escenario.getImage(), 0, 0, null);
-		//AffineTransform tx = AffineTransform.getRotateInstance(rotacion, rana.getIconWidth()/2, rana.getIconHeight()/2);
+		// AffineTransform tx = AffineTransform.getRotateInstance(rotacion,
+		// rana.getIconWidth()/2, rana.getIconHeight()/2);
 		AffineTransform tx = AffineTransform.getTranslateInstance(ventanita.xRana(), ventanita.yRana());
-		tx.rotate(Math.toRadians(rotacion),rana.getIconWidth()/2, rana.getIconHeight()/2);
-		
-		
+		tx.rotate(Math.toRadians(rotacion), rana.getIconWidth() / 2, rana.getIconHeight() / 2);
+
 		g2.drawImage(rana.getImage(), tx, null);
-		Bola actual=ventanita.darPrimerBola();
-		
-			while(actual!=null) {
-		  
-			 if(!actual.isDesaparece()) {
-		    	if(actual.getColor()==Bola.AMARILLO)g2.setColor(new Color(206, 200, 30));
-		    	else if(actual.getColor()==Bola.VERDE)g2.setColor(new Color(55, 163, 40));
-		    	else if(actual.getColor()==Bola.AZUL)g2.setColor(new Color(100, 150, 229));
-		    	else if(actual.getColor()==Bola.ROJO)g2.setColor(new Color(186, 18, 38));
-		    	else if(actual.getColor()==5)g2.setColor(Color.BLACK);//este es pa ensayar la enchoclada, pero esta jodida
-			g2.fillOval(actual.getPosX(),actual.getPosY(), 30, 30);
-		    }
-		    actual=actual.getSiguiente();
-		}
-			
-			if(ventanita.darBala().getColor()==Bola.AMARILLO)g2.setColor(new Color(206, 200, 30));
-	    	else if(ventanita.darBala().getColor()==Bola.VERDE)g2.setColor(new Color(55, 163, 40));
-	    	else if(ventanita.darBala().getColor()==Bola.AZUL)g2.setColor(new Color(100, 150, 229));
-	    	else if(ventanita.darBala().getColor()==Bola.ROJO)g2.setColor(new Color(186, 18, 38));
-			 g2.fillRect(0, 0, 30, 30);
-			if(!ventanita.darBala().isDesaparece()) {
-				
-				 g2.fillOval(ventanita.darBala().getPosX(), ventanita.darBala().getPosY(), 30, 30);
+		Bola actual = ventanita.darPrimerBola();
+
+		while (actual != null) {
+
+			if (!actual.isDesaparece()) {
+				if (actual.getColor() == Bola.AMARILLO)
+					g2.setColor(new Color(206, 200, 30));
+				else if (actual.getColor() == Bola.VERDE)
+					g2.setColor(new Color(55, 163, 40));
+				else if (actual.getColor() == Bola.AZUL)
+					g2.setColor(new Color(100, 150, 229));
+				else if (actual.getColor() == Bola.ROJO)
+					g2.setColor(new Color(186, 18, 38));
+				else if (actual.getColor() == 5)
+					g2.setColor(Color.BLACK);// este es pa ensayar la enchoclada, pero esta jodida
+				g2.fillOval(actual.getPosX(), actual.getPosY(), 30, 30);
 			}
-			
-	       
-			 
-			    	
+			actual = actual.getSiguiente();
+		}
 		
-	
+
+		int[] colores = ventanita.darColores();
+		if (colores[color + 1] == Bola.AMARILLO)
+			g2.setColor(new Color(206, 200, 30));
+		else if (colores[color + 1] == Bola.VERDE)
+			g2.setColor(new Color(55, 163, 40));
+		else if (colores[color + 1] == Bola.AZUL)
+			g2.setColor(new Color(100, 150, 229));
+		else if (colores[color + 1] == Bola.ROJO)
+			g2.setColor(new Color(186, 18, 38));
+		g2.fillOval(350, 224, 30, 30);
+
+		if (ventanita.darBala().getColor() == Bola.AMARILLO)
+			g2.setColor(new Color(206, 200, 30));
+		else if (ventanita.darBala().getColor() == Bola.VERDE)
+			g2.setColor(new Color(55, 163, 40));
+		else if (ventanita.darBala().getColor() == Bola.AZUL)
+			g2.setColor(new Color(100, 150, 229));
+		else if (ventanita.darBala().getColor() == Bola.ROJO)
+			g2.setColor(new Color(186, 18, 38));
+
+		if (!ventanita.darBala().isDesaparece()) {
+
+			g2.fillOval(ventanita.darBala().getPosX(), ventanita.darBala().getPosY(), 30, 30);
+		}
 
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals(GUARDAR)) {
-			
+		if (e.getActionCommand().equals(GUARDAR)) {
+
 		}
-		
-	
+
 	}
-	
-	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		
-//		System.out.println("X " + e.getX());
-//		System.out.println("Y " + e.getY());
-////		double angulo=0;
-////		double dis= Math.sqrt(((Math.pow((e.getX()-ventanita.xRana()), 2))+(Math.pow((e.getY()-ventanita.yRana()), 2))));
-////		System.out.println(dis);
-////		angulo=((ventanita.yRana()-e.getY())/dis);
-//		
-		double x=(e.getX()-ventanita.xRana());
-		double y=(e.getY()-ventanita.yRana());
+
+		// System.out.println("X " + e.getX());
+		// System.out.println("Y " + e.getY());
+		//// double angulo=0;
+		//// double dis= Math.sqrt(((Math.pow((e.getX()-ventanita.xRana()),
+		// 2))+(Math.pow((e.getY()-ventanita.yRana()), 2))));
+		//// System.out.println(dis);
+		//// angulo=((ventanita.yRana()-e.getY())/dis);
+		//
+		double x = (e.getX() - ventanita.xRana());
+		double y = (e.getY() - ventanita.yRana());
 		double r = Math.hypot(x, y);
-		double yy= ventanita.yRana()-e.getY();
-		double angulo = yy/r;
+		double yy = ventanita.yRana() - e.getY();
+		double angulo = yy / r;
 		double b = Math.toDegrees(angulo);
-//		System.out.println("Para x = " + x + "   y = " + y);
-//		System.out.println("hipotenusa = " + r);
-//		System.out.println("angulo2 = " + b + "º");
+		// System.out.println("Para x = " + x + " y = " + y);
+		// System.out.println("hipotenusa = " + r);
+		// System.out.println("angulo2 = " + b + "º");
 		setRotacion(b);
-		ventanita.crearBala();
+
+		setColor(color + 1);
+
+		ventanita.crearBala(color);
+
 		repaint();
 		ventanita.iniciarMovimientoBala(e.getX(), e.getY());
 		ventanita.agregarBolaLanzada(e.getX(), e.getY());
-		
-		
+
 		try {
-			if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.AMARILLO)System.out.println("Amarillo");
-			else if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.AZUL)System.out.println("Azul");
-			else if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.ROJO)System.out.println("Rojo");
-			else if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.VERDE)System.out.println("Verde");
+			if (ventanita.darBolaBuscada(e.getX(), e.getY()).getColor() == Bola.AMARILLO)
+				System.out.println("");
+			else if (ventanita.darBolaBuscada(e.getX(), e.getY()).getColor() == Bola.AZUL)
+				System.out.println("");
+			else if (ventanita.darBolaBuscada(e.getX(), e.getY()).getColor() == Bola.ROJO)
+				System.out.println("");
+			else if (ventanita.darBolaBuscada(e.getX(), e.getY()).getColor() == Bola.VERDE)
+				System.out.println("");
 		} catch (NoExisteBolaException e1) {
 			// TODO Auto-generated catch block
 			ImageIcon icon = new ImageIcon("./imagenes/ranita.png");
 			JOptionPane.showMessageDialog(null, e1.getMessage(), "LANZA MEJOR", JOptionPane.WARNING_MESSAGE, icon);
 		}
-       
-        System.out.println(ventanita.numeroBolas());
-        
 
-
-		
+		System.out.println(ventanita.numeroBolas());
 
 	}
 
@@ -176,6 +188,14 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 	public void mouseReleased(MouseEvent arg0) {
 		// TODO Auto-generated method stub
 
+	}
+
+	public int getColor() {
+		return color;
+	}
+
+	public void setColor(int color) {
+		this.color = color;
 	}
 
 }

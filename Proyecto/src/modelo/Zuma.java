@@ -25,20 +25,10 @@ public class Zuma implements Contable{
 	public Zuma() {
 
 		primerBola = null;
-
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), 0, Bola.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -30, Bola.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -60, Bola.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -90, Bola.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -120, Bola.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -150, Bola.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -180, Bola.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -210, Bola.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -240, Bola.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -270, Bola.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -300, Bola.MAX_POSY, false));
-		addBolaAlFinal(new BolaNormal(darColorAleatorio(), -330, Bola.MAX_POSY, false));
-
+		
+		for(int i=0; i>=Bola.MIN_POSX; i-=Bola.ANCHO_BOLA) {
+			addBolaAlFinal(new BolaNormal(darColorAleatorio(), i, Bola.MAX_POSY, false));
+		}
 		ranita = new RanaNormal("c", 290, 200);
 	}
 	public Zuma(String n) {
@@ -143,6 +133,7 @@ public class Zuma implements Contable{
 	 * @throws NoExisteBolaException
 	 */
 	public void addBolaAntesDe(Bola nueva, int posX, int posY) throws NoExisteBolaException {
+		System.out.println("color add bola " +nueva.getColor());
 
 		if (primerBola == null) {
 			throw new NoExisteBolaException();
@@ -221,7 +212,6 @@ public class Zuma implements Contable{
 		if(actual.getColor()==nueva.getColor()) {
 		Bola sigBuscada= actual.getSiguiente();
 		Bola anteriorNueva=nueva.getAnterior();
-		
 		sigBuscada.setAnterior(anteriorNueva);
 		anteriorNueva.setSiguiente(sigBuscada);
 		}
