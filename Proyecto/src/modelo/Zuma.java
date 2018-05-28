@@ -77,6 +77,20 @@ public class Zuma implements Contable{
 	public int darColorAleatorio() {
 		return (int) (Math.random() * (5 - 1) + 1);
 	}
+	/**
+	 * Recorre la lista hasta encontrar el ultimo 
+	 * @return bola Ultima bola de las lista
+	 *  bola !=null
+	 */
+	public Bola darUltima() {
+		Bola bola=primerBola;
+		while(bola.getSiguiente()!=null) {
+			
+			bola=bola.getSiguiente();
+		}
+		
+		return bola;
+	}
 
 	/**
 	 * Agrega una nueva bola al final de la lista enlazada

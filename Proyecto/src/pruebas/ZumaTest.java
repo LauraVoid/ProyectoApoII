@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
+import excepciones.NoExisteBolaException;
 import excepciones.NoExisteException;
 import modelo.Bola;
 import modelo.BolaNormal;
@@ -82,6 +83,59 @@ class ZumaTest {
 
 		assertEquals(lista1.get(0), j2);
 
+	}
+	@Test
+	public void darColorAleatorioTest() {
+		setUpUno();
+		int color=zuma.darColorAleatorio();
+		
+		assertTrue(color>=1 && color<=4);
+		
+		
+	}
+	@Test
+	public void addBolaAlFinalTest() {
+		setUpUno();
+		
+		BolaNormal bola1 = new BolaNormal(4, 100, 200, false);
+		BolaNormal bola2 = new BolaNormal(3, 209, 300, false);
+		BolaNormal bola3 = new BolaNormal(2, 381, 150, false);
+		BolaNormal bola4 = new BolaNormal(2, 5, 630, false);
+		
+		zuma.addBolaAlFinal(bola1);
+		assertTrue(zuma.getPrimerBola().equals(bola1));
+		zuma.addBolaAlFinal(bola2);
+		assertTrue(zuma.getPrimerBola().getSiguiente().equals(bola2));
+		zuma.addBolaAlFinal(bola3);
+		assertTrue(zuma.getPrimerBola().getSiguiente().getSiguiente().equals(bola3));
+		zuma.addBolaAlFinal(bola4);
+		assertTrue(zuma.getPrimerBola().getSiguiente().getSiguiente().getSiguiente().equals(bola4));
+		
+		
+		
+		
+	}
+	@Test
+	public void buscarBolaPosicion() {
+		setUpUno();
+		
+		BolaNormal bola1 = new BolaNormal(4, 100, 200, false);
+		BolaNormal bola2 = new BolaNormal(3, 209, 300, false);
+		BolaNormal bola3 = new BolaNormal(2, 381, 150, false);
+		zuma.addBolaAlFinal(bola1);
+		zuma.addBolaAlFinal(bola2);
+		zuma.addBolaAlFinal(bola3);
+		
+		try {
+			Bola encontrada= zuma.buscarBolaPosicion(100, 200);
+			Bola encontrada1= zuma.buscarBolaPosicion(209, 300);
+			assertTrue(encontrada.equals(bola1));
+			assertFalse(encontrada1.equals(bola3));
+		} catch (NoExisteBolaException e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 	@Test
