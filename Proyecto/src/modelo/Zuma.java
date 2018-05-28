@@ -21,7 +21,7 @@ public class Zuma implements Contable{
 	private Jugador primerJugador;
 	private Bola primerBola;
 	private Rana ranita;
-
+//lol
 	public Zuma() {
 
 		primerBola = null;
