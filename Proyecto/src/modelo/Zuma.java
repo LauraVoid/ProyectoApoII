@@ -202,12 +202,13 @@ public class Zuma implements Contable{
 
 			if (actual.getPosX() >= Bola.MIN_POSX && actual.getPosY() == Bola.MAX_POSY)
 				actual.setPosX(actual.getPosX() + Bola.ANCHO_BOLA);
-			if ((actual.getPosX() <= Bola.MAX_POSX) && (actual.getPosY() <= Bola.MIN_POSY))
+			if ((actual.getPosX() >= Bola.MAX_POSX) && (actual.getPosY() <= Bola.MAX_POSY))
 				actual.setPosY(actual.getPosY() - Bola.ALTO_BOLA);
 			if ((actual.getPosY() <= Bola.MIN_POSY) && (actual.getPosX() <= Bola.MAX_POSX))
 				actual.setPosX(actual.getPosX() - Bola.ANCHO_BOLA);
 			if ((actual.getPosX() <= Bola.ANCHO_BOLA) && (actual.getPosY() <= Bola.SEGUNDA_POSY))
 				actual.setPosY(actual.getPosY() + Bola.ALTO_BOLA);
+
 			actual = actual.getSiguiente();
 		}
 	}
