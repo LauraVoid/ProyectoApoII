@@ -11,6 +11,7 @@ import excepciones.NoExisteBolaException;
 import excepciones.NoExisteException;
 import hilos.HiloBala;
 import hilos.HiloBola;
+import hilos.HiloCargar;
 import modelo.Bala;
 import modelo.Bola;
 import modelo.BolaNormal;
@@ -75,7 +76,7 @@ public class VentanaPrincipal extends JFrame {
 	public void agregarBolaLanzada(int posX, int posY) {
 		
 		try {
-			miZuma.addBolaAntesDe(new BolaNormal(5, miZuma.darPosXBolaAnterior(posX, posY), miZuma.darPosYBolaAnterior(posX, posY), false), posX, posY);
+			miZuma.addBolaAntesDe(new BolaNormal(miZuma.getRanita().getBala().getColor(), miZuma.darPosXBolaAnterior(posX, posY), miZuma.darPosYBolaAnterior(posX, posY), false), posX, posY);
 			System.out.println(miZuma.getPrimerBola().getSiguiente().getColor());
 		} catch (NoExisteBolaException e) {
 			e.getMessage();
