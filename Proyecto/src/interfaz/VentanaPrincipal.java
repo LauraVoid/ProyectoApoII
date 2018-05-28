@@ -141,6 +141,7 @@ public class VentanaPrincipal extends JFrame {
 	/*
 	 * GitHub me la pela
 	 */
+	//NO se que pasa
 
 	public void cargar(String nombre) throws NullPointerException {
 		try {
