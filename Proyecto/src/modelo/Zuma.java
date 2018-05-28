@@ -156,7 +156,7 @@ public class Zuma implements Contable{
 			buscarBolaPosicion(posX, posY).setAnterior(nueva);
 		}
 	}
-
+////
 	/**
 	 * Retorna la posicion X de la bola anterior a la bola seleccionada
 	 * 
