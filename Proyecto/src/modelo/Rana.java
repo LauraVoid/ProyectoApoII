@@ -20,8 +20,17 @@ public class Rana {
 	 */
 	public void crearBala() {
 		
-		Bala bala= new Bala(1,posX+63,posY+27,false);
+		Bala bala= new Bala(0,posX+63,posY+27,false);
 		setBala(bala);
+	}
+
+	/**
+	 * Retorna un numero aleatorio entre 4 y 1 en el cada uno representa un color
+	 * 
+	 * @return int color
+	 */
+	public int darColorAleatorio() {
+		return (int) (Math.random() * (5 - 1) + 1);
 	}
 
 	public String getColor() {

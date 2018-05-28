@@ -71,6 +71,8 @@ public class VentanaPrincipal extends JFrame {
 
 	public void crearBala() {
 		miZuma.getRanita().crearBala();
+		miZuma.getRanita().getBala().setColor(miZuma.darColorAleatorio());
+		
 	}
 	
 	public void agregarBolaLanzada(int posX, int posY) {
@@ -82,6 +84,7 @@ public class VentanaPrincipal extends JFrame {
 			e.getMessage();
 		}
 		//panelJuego.repaint();
+		/////
 	}
 
 	public void iniciarMovimientoBola() {
