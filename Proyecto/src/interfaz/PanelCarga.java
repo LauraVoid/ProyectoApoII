@@ -48,11 +48,14 @@ public class PanelCarga extends JPanel {
 		
 		g.fillOval(1, 435, 80, 80);
 		g.fillOval(80, 435, 80, 80);
-		g.fillOval(16, 435, 80, 80);
-		g.fillOval(24, 435, 80, 80);
-		g.fillOval(32, 435, 80, 80);
-		g.fillOval(40, 435, 80, 80);
-		g.fillOval(72, 435, 80, 80);
+		g.fillOval(160, 435, 80, 80);
+		g.fillOval(240, 435, 80, 80);
+		g.fillOval(320, 435, 80, 80);
+		g.fillOval(400, 435, 80, 80);
+		g.fillOval(720, 435, 80, 80);
+		g.fillOval(790, 435, 80, 80);
+		g.fillOval(880, 435, 80, 80);
+		g.fillOval(1040, 435, 80, 80);
 
 	}
 
