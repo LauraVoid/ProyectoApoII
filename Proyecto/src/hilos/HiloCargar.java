@@ -1,6 +1,8 @@
 package hilos;
 
 import interfaz.VentanaPrincipal;
+import modelo.BolaNormal;
+import modelo.Caja;
 import modelo.Zuma;
 
 public class HiloCargar extends Thread {
@@ -18,7 +20,17 @@ public class HiloCargar extends Thread {
 		
 		while(true) {
 			
+		
+//			moverHumilde(1);
 			
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			ventana.repaint();
 			
 		}
 	}
