@@ -21,6 +21,7 @@ public class VentanaPrincipal extends JFrame {
 
 	private PanelMenu panelMenu;
 	private PanelJuego panelJuego;
+	private PanelCarga panelCarga;
 	private PanelListaJugadores panelLista;
 	private Zuma miZuma;
 
@@ -32,6 +33,7 @@ public class VentanaPrincipal extends JFrame {
 		miZuma = new Zuma();
 		panelMenu = new PanelMenu(this);
 		panelLista = new PanelListaJugadores(this);
+		panelCarga= new PanelCarga();
 		add(panelMenu, BorderLayout.CENTER);
 
 		setSize(700, 515);
@@ -45,6 +47,12 @@ public class VentanaPrincipal extends JFrame {
 		panelJuego.setVisible(true);
 		add(panelJuego, BorderLayout.CENTER);
 
+	}
+	public void cargar() {
+		
+		panelMenu.setVisible(false);
+	 panelCarga.setVisible(true);
+	 add(panelCarga, BorderLayout.CENTER);
 	}
 
 	public void mostrarLista() {
