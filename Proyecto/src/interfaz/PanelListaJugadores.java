@@ -20,9 +20,9 @@ public class PanelListaJugadores extends JDialog implements ActionListener {
 	private JButton ordenar;
 	private JButton buscar;
 	private JButton regresar;
-	public final static String ORDENAR = "ordenar";
-	public final static String BUSCAR = "buscar";
-	public final static String REGRESAR = "regresar";
+	public static final String ORDENAR = "ordenar";
+	public static final String BUSCAR = "buscar";
+	public static final String REGRESAR = "regresar";
 	private VentanaPrincipal ventanita;
 
 	public PanelListaJugadores(VentanaPrincipal ven) {
