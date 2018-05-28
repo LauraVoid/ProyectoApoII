@@ -25,6 +25,7 @@ public class PanelMenu extends JPanel implements MouseListener {
 		imagenMenu = new ImageIcon("./imagenes/MenuJuego.png");
 
 	}
+	
 
 	public void paintComponent(Graphics g) {
 
@@ -38,7 +39,9 @@ public class PanelMenu extends JPanel implements MouseListener {
 
 		if (e.getX() >= 500 && e.getX() <= 600 && e.getY() >= 180 && e.getY() <= 200) {
 			// NO BORRAR
-			// String respuesta= JOptionPane.showInputDialog("Ingresa tu nombre");
+			String respuesta= JOptionPane.showInputDialog("Ingresa tu nombre", "Edad");
+			String[] cad= respuesta.split(",");
+			ven.crearJugador(cad[0], Integer.parseInt(cad[1]));
 
 			ven.escenarioVisible();
 		}

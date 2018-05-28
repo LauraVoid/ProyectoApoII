@@ -25,8 +25,8 @@ class ZumaTest {
 	@Test
 	public void addJugadorTest() {
 		setUpUno();
-		Jugador j1 = new Jugador("Jugador1", 15, 0);
-		Jugador j2 = new Jugador("Jugador2", 20, 0);
+		Jugador j1 = new Jugador("Jugador1", 15);
+		Jugador j2 = new Jugador("Jugador2", 20);
 
 		zuma.addJugador(j1);
 		zuma.addJugador(j2);
@@ -39,8 +39,8 @@ class ZumaTest {
 	@Test
 	public void removeJugadorTest() {
 		setUpUno();
-		Jugador j1 = new Jugador("Jugador1", 6, 0);
-		Jugador j2 = new Jugador("Jugador2", 14, 0);
+		Jugador j1 = new Jugador("Jugador1", 6);
+		Jugador j2 = new Jugador("Jugador2", 14);
 		zuma.addJugador(j1);
 		zuma.addJugador(j2);
 

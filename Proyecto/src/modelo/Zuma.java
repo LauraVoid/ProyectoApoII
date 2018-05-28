@@ -143,8 +143,7 @@ public class Zuma implements Contable{
 			buscarBolaPosicion(posX, posY).getAnterior().setSiguiente(nueva);
 			nueva.setAnterior(buscarBolaPosicion(posX, posY).getAnterior());
 			buscarBolaPosicion(posX, posY).setAnterior(nueva);
-			
-			eliminarBola(nueva, posX, posY);
+			sumarMonedas(nueva, posX, posY);
 		}
 	}
 ////
@@ -205,8 +204,8 @@ public class Zuma implements Contable{
  			actual = actual.getSiguiente();
 		}
 	}
-	public void eliminarBola(Bola nueva,int x, int y) throws NoExisteBolaException {
-		
+	public boolean eliminarBola(Bola nueva,int x, int y) throws NoExisteBolaException {
+		boolean elimino =false;
 		Bola actual =buscarBolaPosicion(x, y);
 		
 		if(actual.getColor()==nueva.getColor()) {
@@ -214,8 +213,9 @@ public class Zuma implements Contable{
 		Bola anteriorNueva=nueva.getAnterior();
 		sigBuscada.setAnterior(anteriorNueva);
 		anteriorNueva.setSiguiente(sigBuscada);
+		elimino=true;
 		}
-		
+		return elimino;
 		
 		
 		
@@ -290,6 +290,16 @@ public class Zuma implements Contable{
 			}
 		}
 
+	}
+	
+	public void sumarMonedas(Bola nueva, int x, int y) throws NoExisteBolaException {
+		Jugador actual =primerJugador;
+		while(actual!=null) {
+			if(eliminarBola(nueva, x, y)) {
+				actual.addMoneda(new Moneda((int) (Math.random()*100)));
+			}
+			actual=actual.getSiguiente();
+		}
 	}
 
 	/**

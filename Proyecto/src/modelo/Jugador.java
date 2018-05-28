@@ -16,10 +16,9 @@ public class Jugador implements Comparable<Jugador>, Serializable {
 	private Jugador anterior;
 	private Moneda raiz;
 
-	public Jugador(String nom, int edad, int pu) {
+	public Jugador(String nom, int edad) {
 		this.nombre = nom;
 		this.edad = edad;
-		this.puntos = pu;
 		raiz = null;
 	}
 

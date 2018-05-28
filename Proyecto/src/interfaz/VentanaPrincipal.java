@@ -96,8 +96,7 @@ public class VentanaPrincipal extends JFrame {
 		} catch (NoExisteBolaException e) {
 			e.getMessage();
 		}
-		//panelJuego.repaint();
-		/////
+		System.out.println("monedas   "+miZuma.getPrimerJugador().cantidadMonedas());
 	}
 
 	public void iniciarMovimientoBola() {
@@ -137,6 +136,11 @@ public class VentanaPrincipal extends JFrame {
 	
 	public int numeroBolas() {
 		return miZuma.contar();
+	}
+	public void crearJugador(String nombre, int edad) {
+		Jugador j1= new Jugador(nombre, edad);
+		miZuma.addJugador(j1);
+		
 	}
 	/*
 	 * GitHub me la pela

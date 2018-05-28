@@ -114,6 +114,16 @@ public class Moneda implements Contable {
 		
 	}
 	
+	
+	public int contarMonedas() {
+		
+		int p1= (izq==null)? 0:izq.contar();
+		int p2= (der==null)? 0:der.contar();
+		
+		return p1+p2+1;
+		
+	}
+	
 
 	
 	

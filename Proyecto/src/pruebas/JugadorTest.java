@@ -15,7 +15,7 @@ class JugadorTest {
 
 	private void setUpUno() {
 		Zuma zuma = new Zuma();
-		j1 = new Jugador("Jugador1", 12, 0);
+		j1 = new Jugador("Jugador1", 12);
 		zuma.addJugador(j1);
 
 	}
