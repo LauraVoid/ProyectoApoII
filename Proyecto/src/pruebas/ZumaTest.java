@@ -84,58 +84,124 @@ class ZumaTest {
 		assertEquals(lista1.get(0), j2);
 
 	}
+
 	@Test
 	public void darColorAleatorioTest() {
 		setUpUno();
-		int color=zuma.darColorAleatorio();
-		
-		assertTrue(color>=1 && color<=4);
-		
-		
+		int color = zuma.darColorAleatorio();
+
+		assertTrue(color >= 1 && color <= 4);
+
 	}
+
 	@Test
 	public void addBolaAlFinalTest() {
 		setUpUno();
-		
+
 		BolaNormal bola1 = new BolaNormal(4, 100, 200, false);
 		BolaNormal bola2 = new BolaNormal(3, 209, 300, false);
 		BolaNormal bola3 = new BolaNormal(2, 381, 150, false);
 		BolaNormal bola4 = new BolaNormal(2, 5, 630, false);
-		
+
 		zuma.addBolaAlFinal(bola1);
-		assertTrue(zuma.getPrimerBola().equals(bola1));
+		assertTrue(zuma.darUltima().equals(bola1));
 		zuma.addBolaAlFinal(bola2);
-		assertTrue(zuma.getPrimerBola().getSiguiente().equals(bola2));
+		assertTrue(zuma.darUltima().equals(bola2));
 		zuma.addBolaAlFinal(bola3);
-		assertTrue(zuma.getPrimerBola().getSiguiente().getSiguiente().equals(bola3));
+		assertTrue(zuma.darUltima().equals(bola3));
 		zuma.addBolaAlFinal(bola4);
-		assertTrue(zuma.getPrimerBola().getSiguiente().getSiguiente().getSiguiente().equals(bola4));
-		
-		
-		
-		
+		assertTrue(zuma.darUltima().equals(bola4));
+
 	}
+
 	@Test
 	public void buscarBolaPosicion() {
 		setUpUno();
-		
+
 		BolaNormal bola1 = new BolaNormal(4, 100, 200, false);
 		BolaNormal bola2 = new BolaNormal(3, 209, 300, false);
 		BolaNormal bola3 = new BolaNormal(2, 381, 150, false);
 		zuma.addBolaAlFinal(bola1);
 		zuma.addBolaAlFinal(bola2);
 		zuma.addBolaAlFinal(bola3);
-		
+
 		try {
-			Bola encontrada= zuma.buscarBolaPosicion(100, 200);
-			Bola encontrada1= zuma.buscarBolaPosicion(209, 300);
+			Bola encontrada = zuma.buscarBolaPosicion(100, 200);
+			Bola encontrada1 = zuma.buscarBolaPosicion(209, 300);
 			assertTrue(encontrada.equals(bola1));
 			assertFalse(encontrada1.equals(bola3));
 		} catch (NoExisteBolaException e) {
 			e.printStackTrace();
 		}
-		
-		
+
+	}
+
+	@Test
+	public void addBolaAntesDeTest() {
+		setUpUno();
+
+		BolaNormal bola1 = new BolaNormal(4, 100, 200, false);
+		BolaNormal bola2 = new BolaNormal(3, 209, 300, false);
+		BolaNormal bola3 = new BolaNormal(2, 381, 150, false);
+		zuma.addBolaAlFinal(bola1);
+		zuma.addBolaAlFinal(bola2);
+
+		try {
+			zuma.addBolaAntesDe(bola3, 209, 300);
+			assertTrue(zuma.getPrimerBola().getSiguiente().equals(bola3));
+			assertTrue(zuma.getPrimerBola().getSiguiente().getAnterior().equals(bola1));
+		} catch (NoExisteBolaException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test
+	public void darPosXBolaAnteriorTest() {
+		setUpUno();
+
+		BolaNormal bola1 = new BolaNormal(4, 100, 200, false);
+		BolaNormal bola2 = new BolaNormal(3, 209, 300, false);
+		BolaNormal bola3 = new BolaNormal(2, 381, 150, false);
+		zuma.addBolaAlFinal(bola1);
+		zuma.addBolaAlFinal(bola2);
+		zuma.addBolaAlFinal(bola3);
+
+		try {
+			int posXAnterior = zuma.darPosXBolaAnterior(381, 150);
+			int posXAnterior1 = zuma.darPosYBolaAnterior(209, 300);
+			assertEquals(posXAnterior, bola2.getPosX());
+			assertFalse(posXAnterior1 == bola3.getPosX());
+		} catch (NoExisteBolaException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	@Test
+	public void darPosYBolaAnterior() {
+		setUpUno();
+
+		BolaNormal bola1 = new BolaNormal(4, 100, 200, false);
+		BolaNormal bola2 = new BolaNormal(3, 209, 300, false);
+		BolaNormal bola3 = new BolaNormal(2, 381, 150, false);
+		zuma.addBolaAlFinal(bola1);
+		zuma.addBolaAlFinal(bola2);
+		zuma.addBolaAlFinal(bola3);
+
+		try {
+			int posYAnterior = zuma.darPosYBolaAnterior(209, 300);
+			int posYAnterior1 = zuma.darPosYBolaAnterior(209, 300);
+			assertEquals(posYAnterior, bola1.getPosY());
+			assertFalse(posYAnterior1 == bola3.getPosY());
+		} catch (NoExisteBolaException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void aumentarPosicionesTest() {
+
 	}
 
 	@Test

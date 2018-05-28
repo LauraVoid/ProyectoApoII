@@ -85,7 +85,7 @@ class JugadorTest {
 	}
 
 	@Test
-	public void listaOrdenadaDenominacion() {
+	public void listaOrdenadaDenTest() {
 
 		setUpUno();
 		Moneda mon1 = new Moneda(3);
