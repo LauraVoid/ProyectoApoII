@@ -83,6 +83,7 @@ public class VentanaPrincipal extends JFrame {
 			e.getMessage();
 		}
 		//panelJuego.repaint();
+		/////
 	}
 
 	public void iniciarMovimientoBola() {
