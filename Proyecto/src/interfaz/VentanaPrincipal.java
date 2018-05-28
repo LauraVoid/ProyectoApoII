@@ -138,6 +138,9 @@ public class VentanaPrincipal extends JFrame {
 	public int numeroBolas() {
 		return miZuma.contar();
 	}
+	/*
+	 * GitHub me la pela
+	 */
 
 	public void cargar(String nombre) throws NullPointerException {
 		try {
