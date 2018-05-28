@@ -1,11 +1,12 @@
 package modelo;
 
 public class Bala extends Bola {
+	
 
 	public Bala(int col, int posX, int posY, boolean desaparece) {
 		super(col, posX, posY, desaparece);
 	}
-///
+
 	/**
 	 * Mueve la bala teniendo en cuenta los valores que ingresan por parametro Mueve
 	 * la bala entre la parte superior izquierda

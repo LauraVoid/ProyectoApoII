@@ -70,12 +70,14 @@ public class VentanaPrincipal extends JFrame {
 
 	public void crearBala() {
 		miZuma.getRanita().crearBala();
+		miZuma.getRanita().getBala().setColor(miZuma.darColorAleatorio());
+		
 	}
 	
 	public void agregarBolaLanzada(int posX, int posY) {
 		
 		try {
-			miZuma.addBolaAntesDe(new BolaNormal(5, miZuma.darPosXBolaAnterior(posX, posY), miZuma.darPosYBolaAnterior(posX, posY), false), posX, posY);
+			miZuma.addBolaAntesDe(new BolaNormal(miZuma.getRanita().getBala().getColor(), miZuma.darPosXBolaAnterior(posX, posY), miZuma.darPosYBolaAnterior(posX, posY), false), posX, posY);
 			System.out.println(miZuma.getPrimerBola().getSiguiente().getColor());
 		} catch (NoExisteBolaException e) {
 			e.getMessage();

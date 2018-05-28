@@ -64,9 +64,8 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 		AffineTransform tx = AffineTransform.getTranslateInstance(ventanita.xRana(), ventanita.yRana());
 		tx.rotate(Math.toRadians(rotacion),rana.getIconWidth()/2, rana.getIconHeight()/2);
 		
+		
 		g2.drawImage(rana.getImage(), tx, null);
-		
-		
 		Bola actual=ventanita.darPrimerBola();
 		
 			while(actual!=null) {
@@ -81,8 +80,20 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 		    }
 		    actual=actual.getSiguiente();
 		}
-		g2.setColor(Color.BLACK);
-		g2.fillOval(ventanita.darBala().getPosX(), ventanita.darBala().getPosY(), 30, 30);
+			
+			if(ventanita.darBala().getColor()==Bola.AMARILLO)g2.setColor(new Color(206, 200, 30));
+	    	else if(ventanita.darBala().getColor()==Bola.VERDE)g2.setColor(new Color(55, 163, 40));
+	    	else if(ventanita.darBala().getColor()==Bola.AZUL)g2.setColor(new Color(100, 150, 229));
+	    	else if(ventanita.darBala().getColor()==Bola.ROJO)g2.setColor(new Color(186, 18, 38));
+			 g2.fillRect(0, 0, 30, 30);
+			if(!ventanita.darBala().isDesaparece()) {
+				
+				 g2.fillOval(ventanita.darBala().getPosX(), ventanita.darBala().getPosY(), 30, 30);
+			}
+			
+	       
+			 
+			    	
 		
 	
 
@@ -119,7 +130,10 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 //		System.out.println("angulo2 = " + b + "º");
 		setRotacion(b);
 		ventanita.crearBala();
+		repaint();
 		ventanita.iniciarMovimientoBala(e.getX(), e.getY());
+		ventanita.agregarBolaLanzada(e.getX(), e.getY());
+		
 		
 		try {
 			if(ventanita.darBolaBuscada(e.getX(), e.getY()).getColor()==Bola.AMARILLO)System.out.println("Amarillo");
@@ -131,7 +145,7 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 			ImageIcon icon = new ImageIcon("./imagenes/ranita.png");
 			JOptionPane.showMessageDialog(null, e1.getMessage(), "LANZA MEJOR", JOptionPane.WARNING_MESSAGE, icon);
 		}
-        ventanita.agregarBolaLanzada(e.getX(), e.getY());
+       
         System.out.println(ventanita.numeroBolas());
         
 
@@ -143,7 +157,7 @@ public class PanelJuego extends JPanel implements MouseListener,ActionListener{
 	@Override
 	public void mouseEntered(MouseEvent e) {
 
-		
+		repaint();
 	}
 
 	@Override

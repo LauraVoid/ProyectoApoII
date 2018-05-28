@@ -136,24 +136,24 @@ public class Zuma implements Contable{
 	}
 
 	/**
-	 * 
+	 * Agreg
 	 * @param nueva
 	 * @param posX
 	 * @param posY
 	 * @throws NoExisteBolaException
 	 */
 	public void addBolaAntesDe(Bola nueva, int posX, int posY) throws NoExisteBolaException {
-		Bola actual = primerBola;
 
 		if (primerBola == null) {
 			throw new NoExisteBolaException();
 		} else {
-			aumentarPosiciones(posX, posY);
-
+		    aumentarPosiciones(posX, posY);
 			nueva.setSiguiente(buscarBolaPosicion(posX, posY));
 			buscarBolaPosicion(posX, posY).getAnterior().setSiguiente(nueva);
 			nueva.setAnterior(buscarBolaPosicion(posX, posY).getAnterior());
 			buscarBolaPosicion(posX, posY).setAnterior(nueva);
+			
+			eliminarBola(nueva, posX, posY);
 		}
 	}
 ////
@@ -161,12 +161,11 @@ public class Zuma implements Contable{
 	 * Retorna la posicion X de la bola anterior a la bola seleccionada
 	 * 
 	 * @param posX
-	 * @param posYS
+	 * @param posY
 	 * @return pos Bola
 	 * @throws NoExisteBolaException
 	 */
 	public int darPosXBolaAnterior(int posX, int posY) throws NoExisteBolaException {
-
 		return buscarBolaPosicion(posX, posY).getAnterior().getPosX();
 
 	}
@@ -201,16 +200,36 @@ public class Zuma implements Contable{
 		while (actual != null && (actual != buscarBolaPosicion(posX, posY))) {
 
 			if (actual.getPosX() >= Bola.MIN_POSX && actual.getPosY() == Bola.MAX_POSY)
+				//if(actual.getPosX()<=Bola.MAX_POSX-30) {
 				actual.setPosX(actual.getPosX() + Bola.ANCHO_BOLA);
+				//}
 			if ((actual.getPosX() >= Bola.MAX_POSX) && (actual.getPosY() <= Bola.MAX_POSY))
 				actual.setPosY(actual.getPosY() - Bola.ALTO_BOLA);
 			if ((actual.getPosY() <= Bola.MIN_POSY) && (actual.getPosX() <= Bola.MAX_POSX))
 				actual.setPosX(actual.getPosX() - Bola.ANCHO_BOLA);
 			if ((actual.getPosX() <= Bola.ANCHO_BOLA) && (actual.getPosY() <= Bola.SEGUNDA_POSY))
 				actual.setPosY(actual.getPosY() + Bola.ALTO_BOLA);
+			
 
-			actual = actual.getSiguiente();
+ 			actual = actual.getSiguiente();
 		}
+	}
+	public void eliminarBola(Bola nueva,int x, int y) throws NoExisteBolaException {
+		
+		Bola actual =buscarBolaPosicion(x, y);
+		
+		if(actual.getColor()==nueva.getColor()) {
+		Bola sigBuscada= actual.getSiguiente();
+		Bola anteriorNueva=nueva.getAnterior();
+		
+		sigBuscada.setAnterior(anteriorNueva);
+		anteriorNueva.setSiguiente(sigBuscada);
+		}
+		
+		
+		
+		
+		
 	}
 
 	/**
