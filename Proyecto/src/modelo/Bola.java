@@ -5,16 +5,17 @@ import java.util.ArrayList;
 import interfaz.PanelJuego;
 
 public class Bola {
+	
 
 	public static final int AMARILLO = 1;
 	public static final int ROJO = 2;
 	public static final int AZUL = 3;
 	public static final int VERDE = 4;
-
+	
 	public static final int MAX_POSY = 365;
 	public static final int MAX_POSX = 655;
 	public static final int MIN_POSY = 65;
-	public static final int MIN_POSX = -330;
+	public static final int MIN_POSX = -450;
 	public static final int SEGUNDA_POSY = 255;
 	public static final int ANCHO_BOLA = 30;
 	public static final int ALTO_BOLA = 30;

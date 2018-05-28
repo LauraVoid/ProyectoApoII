@@ -71,7 +71,9 @@ public class VentanaPrincipal extends JFrame {
 
 	public void crearBala(int color) {
 		
+
 		//si no funciona me corto una
+
 		//System.out.println("Color" +posColor);
 //		miZuma.getRanita().crearBala(miZuma.darColorAleatorio());
 		
