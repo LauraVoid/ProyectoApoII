@@ -3,6 +3,7 @@ package interfaz;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Polygon;
 
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
@@ -14,7 +15,7 @@ public class PanelCarga extends JPanel {
 
 	public PanelCarga() {
 		setSize(700, 515);
-//		this.ven=v;
+//		this.ven=v; 
 		imagen = new ImageIcon("./imagenes/fondo-negro.jpg");
 
 	}
@@ -26,13 +27,6 @@ public class PanelCarga extends JPanel {
 		g.setFont(font);
 		g.setColor(new Color(78, 105, 150));
 		g.drawString("Cargando...", 200, 70);
-
-		// Polygon polygon = new Polygon();
-		// polygon.addPoint(350,230);
-		// polygon.addPoint(400,305);
-		// polygon.addPoint(450,350);
-		// polygon.addPoint(500,400);
-		// g.fillPolygon(polygon);
 
 		
 
@@ -50,7 +44,15 @@ public class PanelCarga extends JPanel {
 		g.drawRect(480, 200, 30, 30);
 		
 		g.setColor(new Color(226, 213, 31));
-		g.fillArc(ven.darPrimerBola().getPosX(), ven.darPrimerBola().getPosY(), 80, 80, 50, 275);
+		g.fillArc(100,100, 80, 80, 50, 275);
+		
+		g.fillOval(1, 435, 80, 80);
+		g.fillOval(80, 435, 80, 80);
+		g.fillOval(16, 435, 80, 80);
+		g.fillOval(24, 435, 80, 80);
+		g.fillOval(32, 435, 80, 80);
+		g.fillOval(40, 435, 80, 80);
+		g.fillOval(72, 435, 80, 80);
 
 	}
 

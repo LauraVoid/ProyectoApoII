@@ -38,10 +38,7 @@ public class BolaNormal extends Bola {
 
 	}
 
-	public void moverHumilde(int num) {
-		setPosX(getPosX()+num);
-
-	}
+	
 
 	/**
 	 * public void mover(int x, int y) {

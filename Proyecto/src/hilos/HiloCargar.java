@@ -2,6 +2,7 @@ package hilos;
 
 import interfaz.VentanaPrincipal;
 import modelo.BolaNormal;
+import modelo.Caja;
 import modelo.Zuma;
 
 public class HiloCargar extends Thread {
@@ -19,8 +20,8 @@ public class HiloCargar extends Thread {
 		
 		while(true) {
 			
-			BolaNormal bb=(BolaNormal) zuma.getPrimerBola();
-			bb.moverHumilde(1);
+		
+//			moverHumilde(1);
 			
 			try {
 				Thread.sleep(50);
