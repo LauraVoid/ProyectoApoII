@@ -185,15 +185,14 @@ public class Zuma implements Contable{
 	// la primera hasta la que selecciono, si esta a la izquierda que le disminuya a
 	// y
 	// a las mismas bolas, pero eso se descontrola.
-	public void aumentarPosiciones(int posX, int posY) throws NoExisteBolaException {
+	/**public void aumentarPosiciones(int posX, int posY) throws NoExisteBolaException {
 		Bola actual = primerBola;
 
 		while (actual != null && (actual != buscarBolaPosicion(posX, posY))) {
 
-			if (actual.getPosX() >= Bola.MIN_POSX && actual.getPosY() == Bola.MAX_POSY)
-				//if(actual.getPosX()<=Bola.MAX_POSX-30) {
+			if (actual.getPosX() >= Bola.MIN_POSX && actual.getPosY() == Bola.MAX_POSY )
 				actual.setPosX(actual.getPosX() + Bola.ANCHO_BOLA);
-				//}
+			
 			if ((actual.getPosX() >= Bola.MAX_POSX) && (actual.getPosY() <= Bola.MAX_POSY))
 				actual.setPosY(actual.getPosY() - Bola.ALTO_BOLA);
 			if ((actual.getPosY() <= Bola.MIN_POSY) && (actual.getPosX() <= Bola.MAX_POSX))
@@ -204,7 +203,33 @@ public class Zuma implements Contable{
 
  			actual = actual.getSiguiente();
 		}
+	}*/
+	
+	public void aumentarPosiciones(int posX, int posY) throws NoExisteBolaException {
+		Bola actual = primerBola;
+		boolean esta=true;
+
+		while (actual != null && (actual != buscarBolaPosicion(posX, posY))) {
+
+			if (actual.getPosX() <= Bola.MAX_POSX && actual.getPosY() <= Bola.MAX_POSY) {
+				actual.estaEsquinaDerInf();
+				//actual.estaEsquinaDerSup();
+			}
+		   
+			
+				
+			/**if ((actual.getPosY() <= Bola.MIN_POSY) && (actual.getPosX() <= Bola.MAX_POSX))
+				actual.setPosX(actual.getPosX() - Bola.ANCHO_BOLA);
+			if ((actual.getPosX() <= Bola.ANCHO_BOLA) && (actual.getPosY() <= Bola.SEGUNDA_POSY))
+				actual.setPosY(actual.getPosY() + Bola.ALTO_BOLA);*/
+			
+
+ 			actual = actual.getSiguiente();
+		}
 	}
+	
+	
+	
 	public boolean eliminarBola(Bola nueva,int x, int y) throws NoExisteBolaException {
 		boolean elimino =false;
 		Bola actual =buscarBolaPosicion(x, y);

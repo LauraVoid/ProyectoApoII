@@ -30,6 +30,7 @@ public class Bola {
 	private int y = MAX_POSY;
 	private int x2 = MAX_POSX;
 	private int y2 = MIN_POSY;
+	private int esquina =1;
 
 	public Bola(int col, int posX, int posY, boolean desaparece) {
 		siguiente = null;
@@ -119,6 +120,15 @@ public class Bola {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+	
+
+	public int getEsquina() {
+		return esquina;
+	}
+
+	public void setEsquina(int esquina) {
+		this.esquina = esquina;
 	}
 
 	/**
@@ -283,5 +293,52 @@ public class Bola {
 	//
 	// }
 	// Paila nos jodimos
-
+	
+	public void estaEsquinaDerInf() {
+		int resta=0;
+		int faltante=0;
+		setEsquina(1);
+	
+			if(this.getPosX()>Bola.MAX_POSX-Bola.ANCHO_BOLA) {
+				resta=Bola.MAX_POSX-this.getPosX();
+				faltante=Bola.ANCHO_BOLA-resta;
+				this.setPosX(this.getPosX()+resta);
+				this.setPosY(this.getPosY()-faltante);
+				
+				
+				
+			
+				
+			}
+			
+			else {
+				this.setPosX(this.getPosX() + Bola.ANCHO_BOLA);
+				
+		
+		}
+			
+	}
+	public void estaEsquinaDerSup() {
+		int resta=0;
+		int faltante=0;
+		setEsquina(2);
+	   
+			if(this.getPosY()<Bola.MIN_POSY+Bola.ALTO_BOLA) {
+				resta=this.getPosY()-Bola.MIN_POSY;
+				faltante=Bola.ALTO_BOLA-resta;
+				
+				this.setPosY(this.getPosY()-resta);
+				this.setPosX(this.getPosX()-faltante);
+				
+			}
+			else {
+				this.setPosY(this.getPosY() - Bola.ALTO_BOLA);
+		
+		}
+			
+	
+	}
+	
 }
+
+
