@@ -70,7 +70,7 @@ class BolaTest {
     @Test
     public void aumentarPosicionBolaTest() {
     	setUpUno();
-    	bola.estaEsquinaDerInf();
+    	bola.aumentarPosicionBola();
     	assertTrue(bola.getPosX()==130);
     }
     	

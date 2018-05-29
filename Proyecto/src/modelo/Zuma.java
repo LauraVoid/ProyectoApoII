@@ -14,7 +14,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import excepciones.NoExisteBolaException;
-import excepciones.NoExisteException;
+import excepciones.NoExisteJugadorException;
 
 public class Zuma implements Contable{
 
@@ -137,7 +137,7 @@ public class Zuma implements Contable{
 	public void addBolaAntesDe(Bola nueva, int posX, int posY) throws NoExisteBolaException {
 		System.out.println("color add bola " +nueva.getColor());
 
-		if (primerBola == null) {
+		if (primerBola == buscarBolaPosicion(posX, posY)) {
 			throw new NoExisteBolaException();
 		} else {
 		    aumentarPosiciones(posX, posY);
@@ -145,11 +145,10 @@ public class Zuma implements Contable{
 			buscarBolaPosicion(posX, posY).getAnterior().setSiguiente(nueva);
 			nueva.setAnterior(buscarBolaPosicion(posX, posY).getAnterior());
 			buscarBolaPosicion(posX, posY).setAnterior(nueva);
-			//eliminarBola(nueva, posX, posY);
 			sumarMonedas(nueva, posX, posY);
 		}
 	}
-////
+
 	/**
 	 * Retorna la posicion X de la bola anterior a la bola seleccionada
 	 * 
@@ -158,8 +157,13 @@ public class Zuma implements Contable{
 	 * @return pos Bola
 	 * @throws NoExisteBolaException
 	 */
-	public int darPosXBolaAnterior(int posX, int posY) throws NoExisteBolaException {
+	public int darPosXBolaAnterior(int posX, int posY) throws NoExisteBolaException,NullPointerException {
+
+		if (primerBola == buscarBolaPosicion(posX, posY)) {
+			throw new NullPointerException();
+		} else {
 		return buscarBolaPosicion(posX, posY).getAnterior().getPosX();
+		}
 
 	}
 
@@ -171,8 +175,12 @@ public class Zuma implements Contable{
 	 * @return
 	 * @throws NoExisteBolaException
 	 */
-	public int darPosYBolaAnterior(int posX, int posY) throws NoExisteBolaException {
+	public int darPosYBolaAnterior(int posX, int posY) throws NullPointerException, NoExisteBolaException {
+		if (primerBola == buscarBolaPosicion(posX, posY)) {
+			throw new NullPointerException();
+		} else {
 		return buscarBolaPosicion(posX, posY).getAnterior().getPosY();
+		}
 	}
 
 	/**
@@ -183,47 +191,16 @@ public class Zuma implements Contable{
 	 * @param posY
 	 * 
 	 */
-	// Aqui estoy tratando de que cuando este abajo aumente el x de las bolas desde
-	// la primera hasta la que selecciono, si esta a la izquierda que le disminuya a
-	// y
-	// a las mismas bolas, pero eso se descontrola.
-	/**public void aumentarPosiciones(int posX, int posY) throws NoExisteBolaException {
-		Bola actual = primerBola;
-
-		while (actual != null && (actual != buscarBolaPosicion(posX, posY))) {
-
-			if (actual.getPosX() >= Bola.MIN_POSX && actual.getPosY() == Bola.MAX_POSY )
-				actual.setPosX(actual.getPosX() + Bola.ANCHO_BOLA);
-			
-			if ((actual.getPosX() >= Bola.MAX_POSX) && (actual.getPosY() <= Bola.MAX_POSY))
-				actual.setPosY(actual.getPosY() - Bola.ALTO_BOLA);
-			if ((actual.getPosY() <= Bola.MIN_POSY) && (actual.getPosX() <= Bola.MAX_POSX))
-				actual.setPosX(actual.getPosX() - Bola.ANCHO_BOLA);
-			if ((actual.getPosX() <= Bola.ANCHO_BOLA) && (actual.getPosY() <= Bola.SEGUNDA_POSY))
-				actual.setPosY(actual.getPosY() + Bola.ALTO_BOLA);
-			
-
- 			actual = actual.getSiguiente();
-		}
-	}*/
 	
 	public void aumentarPosiciones(int posX, int posY) throws NoExisteBolaException {
 		Bola actual = primerBola;
-		boolean esta=true;
-		int resta=0;
-		int faltante=0;
+		
 
 		while (actual != null && (actual != buscarBolaPosicion(posX, posY))) {
 
 			if (actual.getPosX() <= Bola.MAX_POSX && actual.getPosY() <= Bola.MAX_POSY ) {
-				actual.estaEsquinaDerInf();
+				actual.aumentarPosicionBola();
 			}
-			
-				
-			/**if ((actual.getPosY() <= Bola.MIN_POSY) && (actual.getPosX() <= Bola.MAX_POSX))
-				actual.setPosX(actual.getPosX() - Bola.ANCHO_BOLA);
-			if ((actual.getPosX() <= Bola.ANCHO_BOLA) && (actual.getPosY() <= Bola.SEGUNDA_POSY))
-				actual.setPosY(actual.getPosY() + Bola.ALTO_BOLA);*/
 			
 
  			actual = actual.getSiguiente();
@@ -249,7 +226,9 @@ public class Zuma implements Contable{
 		sigBuscada.setAnterior(anteriorNueva);
 		anteriorNueva.setSiguiente(sigBuscada);
 		elimino=true;
+		if(sigBuscada==null) throw new NullPointerException();
 		}
+		
 		return elimino;
 		
 		
@@ -313,13 +292,13 @@ public class Zuma implements Contable{
 	 *            Nombre del Jugador a buscar
 	 * @return Jugador encontrado
 	 */
-	public Jugador buscarJugador(String nomJug) throws NoExisteException {
+	public Jugador buscarJugador(String nomJug) throws NoExisteJugadorException {
 
 		if (primerJugador.getNombre().equals(nomJug)) {
 			return primerJugador;
 		} else {
 			if (primerJugador.buscarJugador(nomJug) == null) {
-				throw new NoExisteException(nomJug);
+				throw new NoExisteJugadorException(nomJug);
 			} else {
 				return primerJugador.buscarJugador(nomJug);
 			}

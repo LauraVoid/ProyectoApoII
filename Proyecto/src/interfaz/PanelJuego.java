@@ -26,13 +26,14 @@ public class PanelJuego extends JPanel implements MouseListener, ActionListener 
 	private double rotacion;
 	private JButton menu;
 	private int color;
+	private int contador=0;
 
 	public PanelJuego(VentanaPrincipal ventanita, int a) {
 		this.ventanita = ventanita;
 		menu = new JButton("Guardar");
 		add(menu);
 		this.color = a;
-		ventanita.iniciarMovimientoBola();
+		
 
 		rana = new ImageIcon("./imagenes/Rana.png");
 		escenario = new ImageIcon("./imagenes/Escenario.png");
@@ -47,6 +48,15 @@ public class PanelJuego extends JPanel implements MouseListener, ActionListener 
 
 	public void setRotacion(double rotacion) {
 		this.rotacion = rotacion;
+	}
+	
+
+	public int getContador() {
+		return contador;
+	}
+
+	public void setContador(int contador) {
+		this.contador = contador;
 	}
 
 	public void paintComponent(Graphics g) {
@@ -76,7 +86,7 @@ public class PanelJuego extends JPanel implements MouseListener, ActionListener 
 				else if (actual.getColor() == Bola.ROJO)
 					g2.setColor(new Color(186, 18, 38));
 				else if (actual.getColor() == 5)
-					g2.setColor(Color.BLACK);// este es pa ensayar la enchoclada, pero esta jodida
+					g2.setColor(Color.BLACK);
 				g2.fillOval(actual.getPosX(), actual.getPosY(), 30, 30);
 			}
 			actual = actual.getSiguiente();
@@ -128,9 +138,6 @@ public class PanelJuego extends JPanel implements MouseListener, ActionListener 
 		double yy = ventanita.yRana() - e.getY();
 		double angulo = yy / r;
 		double b = Math.toDegrees(angulo);
-		// System.out.println("Para x = " + x + " y = " + y);
-		// System.out.println("hipotenusa = " + r);
-		// System.out.println("angulo2 = " + b + "º");
 		setRotacion(b);
 
 		setColor(color + 1);
@@ -140,25 +147,15 @@ public class PanelJuego extends JPanel implements MouseListener, ActionListener 
 		repaint();
 		ventanita.iniciarMovimientoBala(e.getX(), e.getY());
 		ventanita.agregarBolaLanzada(e.getX(), e.getY());
-
-		try {
-			if (ventanita.darBolaBuscada(e.getX(), e.getY()).getColor() == Bola.AMARILLO)
-				System.out.println("");
-			else if (ventanita.darBolaBuscada(e.getX(), e.getY()).getColor() == Bola.AZUL)
-				System.out.println("");
-			else if (ventanita.darBolaBuscada(e.getX(), e.getY()).getColor() == Bola.ROJO)
-				System.out.println("");
-			else if (ventanita.darBolaBuscada(e.getX(), e.getY()).getColor() == Bola.VERDE)
-				System.out.println("");
-		} catch (NoExisteBolaException e1) {
-			// TODO Auto-generated catch block
-			ImageIcon icon = new ImageIcon("./imagenes/ranita.png");
-			JOptionPane.showMessageDialog(null, e1.getMessage(), "LANZA MEJOR", JOptionPane.WARNING_MESSAGE, icon);
-		}
-
-//		System.out.println(ventanita.numeroBolas());
+	
+	
 		ventanita.sumarMonedas();
-//		System.out.println();
+		
+		if(contador==1) {
+			ImageIcon icon = new ImageIcon("./imagenes/ranaRene.jpg");
+			JOptionPane.showMessageDialog(null, "La Rana con poder se ha activado, ahora la velocida es mas lenta", "CRACK", JOptionPane.WARNING_MESSAGE, icon);
+			}
+
 
 	}
 

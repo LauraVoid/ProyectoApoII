@@ -3,11 +3,12 @@ package interfaz;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import excepciones.NoExisteBolaException;
-import excepciones.NoExisteException;
+import excepciones.NoExisteJugadorException;
 import hilos.HiloBala;
 import hilos.HiloBola;
 import hilos.HiloCargar;
@@ -97,16 +98,11 @@ public class VentanaPrincipal extends JFrame {
 
 	public void crearBala(int color) {
 
-		// si no funciona me corto una
-
-		// System.out.println("Color" +posColor);
-		// miZuma.getRanita().crearBala(miZuma.darColorAleatorio());
-
-		// miZuma.getRanita().crearBala(color);
+	
 		System.out.println("crear Bola " + color);
 		miZuma.getRanita().crearBala(miZuma.getRanita().getColores()[color]);
 		Bala balita = miZuma.getRanita().getBala();
-		// System.out.println("c"+balita.getColores()[posColor]);
+		
 
 	}
 
@@ -119,12 +115,16 @@ public class VentanaPrincipal extends JFrame {
 		try {
 			miZuma.addBolaAntesDe(new BolaNormal(miZuma.getRanita().getBala().getColor(),
 					miZuma.darPosXBolaAnterior(posX, posY), miZuma.darPosYBolaAnterior(posX, posY), false), posX, posY);
-			// System.out.println("AgregarBola
-			// "+miZuma.getPrimerBola().getSiguiente().getColor());
+			
 		} catch (NoExisteBolaException e) {
-			e.getMessage();
+			ImageIcon icon = new ImageIcon("./imagenes/ranita.png");
+			JOptionPane.showMessageDialog(null, e.getMessage(), "LANZA MEJOR", JOptionPane.WARNING_MESSAGE, icon);
 		}
-		//System.out.println("monedas   " + miZuma.getPrimerJugador().cantidadMonedas());
+		catch (NullPointerException e) {
+			ImageIcon icon = new ImageIcon("./imagenes/ranita.png");
+			JOptionPane.showMessageDialog(null, "Intenta otro tiro", "LANZA MEJOR", JOptionPane.WARNING_MESSAGE, icon);
+		}
+		
 	}
 
 	public void iniciarMovimientoBola() {
@@ -158,7 +158,6 @@ public class VentanaPrincipal extends JFrame {
 	}
 
 	public Bola darBolaBuscada(int posX, int posY) throws NoExisteBolaException {
-
 		return miZuma.buscarBolaPosicion(posX, posY);
 	}
 
@@ -172,11 +171,13 @@ public class VentanaPrincipal extends JFrame {
 
 	}
 	public void sumarMonedas() {
+		
 		int n=miZuma.getPrimerJugador().darMonedas();
 		
 		if(n>=150) {
-//			System.out.println("Cambio de nivel "+n);
+			panelJuego.setContador(panelJuego.getContador()+1);
 			crearPoderes();
+			
 		}
 	}
 

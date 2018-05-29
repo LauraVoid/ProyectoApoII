@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
 
 import excepciones.NoExisteBolaException;
-import excepciones.NoExisteException;
+import excepciones.NoExisteJugadorException;
 import modelo.Bola;
 import modelo.BolaNormal;
 import modelo.Jugador;
@@ -61,7 +61,7 @@ class ZumaTest {
 		try {
 			Jugador encontrado = zuma.buscarJugador("Jugador2");
 			assertEquals(j2, encontrado);
-		} catch (NoExisteException e) {
+		} catch (NoExisteJugadorException e) {
 			e.printStackTrace();
 		}
 

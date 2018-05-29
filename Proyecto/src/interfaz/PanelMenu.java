@@ -33,17 +33,27 @@ public class PanelMenu extends JPanel implements MouseListener {
 
 		g2.drawImage(imagenMenu.getImage(), 0, 0, null);
 	}
+	
+	public void registrarUsuario() throws NumberFormatException{
+		try {
+		String nombre= JOptionPane.showInputDialog("Ingresa tu nombre", "Nombre");
+		String edad= JOptionPane.showInputDialog("Ingresa tu edad", "Edad");
+		ven.crearJugador(nombre, Integer.parseInt(edad));
+		}catch(NumberFormatException e) {
+			
+			JOptionPane.showMessageDialog(null, "Digite su EDAD", "ENTRADA ERRONEA", JOptionPane.ERROR_MESSAGE);
+		}
+	}
+	
+	
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
 		if (e.getX() >= 500 && e.getX() <= 600 && e.getY() >= 180 && e.getY() <= 200) {
-			// NO BORRAR
-			String respuesta= JOptionPane.showInputDialog("Ingresa tu nombre, Edad");
-			String[] cad= respuesta.split(",");
-			ven.crearJugador(cad[0], Integer.parseInt(cad[1]));
-
-			ven.escenarioVisible();
+			registrarUsuario();
+		    ven.escenarioVisible();
+			ven.iniciarMovimientoBola();
 		}
 
 		else if (e.getX() >= 500 && e.getX() <= 640 && e.getY() >= 300 && e.getY() <= 310) {
