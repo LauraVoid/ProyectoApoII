@@ -64,6 +64,7 @@ public class PanelMenu extends JPanel implements MouseListener {
 		} else if (e.getX() >= 500 && e.getX() <= 600 && e.getY() >= 240 && e.getY() <= 260) {
 			String respuesta = JOptionPane.showInputDialog("Ingrese su nombre");
 			ven.cargar(respuesta);
+			ven.iniciarMovimientoBola();
 		}else
 //		 ven.cargar();
 		 System.out.println("X " +e.getX()+ " Y " +e.getY());
