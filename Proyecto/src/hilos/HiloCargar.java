@@ -21,7 +21,7 @@ public class HiloCargar extends Thread {
 		while(true) {
 			
 		
-//			moverHumilde(1);
+			zuma.getCajita().moverHumilde(1);
 			
 			try {
 				Thread.sleep(50);

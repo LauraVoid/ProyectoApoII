@@ -53,8 +53,8 @@ class ZumaTest {
 	@Test
 	public void buscarJugadorTest() {
 		setUpUno();
-		Jugador j1 = new Jugador("Jugador1", 14, 0);
-		Jugador j2 = new Jugador("Jugador2", 6, 0);
+		Jugador j1 = new Jugador("Jugador1", 14);
+		Jugador j2 = new Jugador("Jugador2", 6);
 		zuma.addJugador(j1);
 		zuma.addJugador(j2);
 
@@ -71,9 +71,9 @@ class ZumaTest {
 	public void JugadoresOrdenadaNombreTest() {
 		setUpUno();
 
-		Jugador j1 = new Jugador("BB", 10, 0);
-		Jugador j2 = new Jugador("AA", 11, 0);
-		Jugador j3 = new Jugador("CC", 12, 0);
+		Jugador j1 = new Jugador("BB", 10);
+		Jugador j2 = new Jugador("AA", 11);
+		Jugador j3 = new Jugador("CC", 12);
 
 		zuma.addJugador(j1);
 		zuma.addJugador(j2);
@@ -208,9 +208,9 @@ class ZumaTest {
 	public void JugadoresOrdenadaEdadTest() {
 		setUpUno();
 
-		Jugador j1 = new Jugador("BB", 10, 0);
-		Jugador j2 = new Jugador("AA", 11, 0);
-		Jugador j3 = new Jugador("CC", 12, 0);
+		Jugador j1 = new Jugador("BB", 10);
+		Jugador j2 = new Jugador("AA", 11);
+		Jugador j3 = new Jugador("CC", 12);
 
 		zuma.addJugador(j1);
 		zuma.addJugador(j2);
@@ -242,7 +242,7 @@ class ZumaTest {
 	@Test
 	public void serializarTest() {
 		setUpUno();
-		Jugador j1 = new Jugador("BB", 10, 0);
+		Jugador j1 = new Jugador("BB", 10);
 		zuma.addJugador(j1);
 
 		zuma.serializar(j1);

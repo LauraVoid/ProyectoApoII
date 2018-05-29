@@ -21,7 +21,8 @@ public class Zuma implements Contable{
 	private Jugador primerJugador;
 	private Bola primerBola;
 	private Rana ranita;
-//lol
+	private Caja cajita;
+	
 	public Zuma() {
 
 		primerBola = null;
@@ -555,5 +556,13 @@ public class Zuma implements Contable{
 		return nueva;
 
 	}
+	public Caja getCajita() {
+		return cajita;
+	}
+	public void setCajita(Caja cajita) {
+		this.cajita = cajita;
+	}
+	
+	
 
 }
