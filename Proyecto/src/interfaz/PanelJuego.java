@@ -1,6 +1,7 @@
 package interfaz;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
@@ -66,6 +67,11 @@ public class PanelJuego extends JPanel implements MouseListener, ActionListener 
 		removeAll();
 		super.paintComponent(g2);
 		g2.drawImage(escenario.getImage(), 0, 0, null);
+		Font font = new Font("Audiowide", Font.BOLD, 20);
+		g.setFont(font);
+		g2.drawString(ventanita.darNom()+" ", 50, 20);
+		
+		
 		// AffineTransform tx = AffineTransform.getRotateInstance(rotacion,
 		// rana.getIconWidth()/2, rana.getIconHeight()/2);
 		AffineTransform tx = AffineTransform.getTranslateInstance(ventanita.xRana(), ventanita.yRana());

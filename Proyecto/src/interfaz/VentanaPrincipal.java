@@ -55,6 +55,9 @@ public class VentanaPrincipal extends JFrame {
 		add(panelJuego, BorderLayout.CENTER);
 
 	}
+	public String darNom() {
+		return miZuma.getPrimerJugador().getNombre();
+	}
 
 	public void crearPoderes() {
 
@@ -165,7 +168,7 @@ public class VentanaPrincipal extends JFrame {
 
 	public void crearJugador(String nombre, int edad) {
 		Jugador j1 = new Jugador(nombre, edad);
-		miZuma.addJugador(j1);
+		miZuma.setPrimerJugador(j1);
 
 	}
 
