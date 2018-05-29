@@ -83,16 +83,7 @@ public class PanelJuego extends JPanel implements MouseListener, ActionListener 
 		}
 		
 
-		int[] colores = ventanita.darColores();
-		if (colores[color + 1] == Bola.AMARILLO)
-			g2.setColor(new Color(206, 200, 30));
-		else if (colores[color + 1] == Bola.VERDE)
-			g2.setColor(new Color(55, 163, 40));
-		else if (colores[color + 1] == Bola.AZUL)
-			g2.setColor(new Color(100, 150, 229));
-		else if (colores[color + 1] == Bola.ROJO)
-			g2.setColor(new Color(186, 18, 38));
-		g2.fillOval(350, 224, 30, 30);
+	
 
 		if (ventanita.darBala().getColor() == Bola.AMARILLO)
 			g2.setColor(new Color(206, 200, 30));
@@ -107,6 +98,17 @@ public class PanelJuego extends JPanel implements MouseListener, ActionListener 
 
 			g2.fillOval(ventanita.darBala().getPosX(), ventanita.darBala().getPosY(), 30, 30);
 		}
+		
+		int[] colores = ventanita.darColores();
+		if (colores[color + 1] == Bola.AMARILLO)
+			g2.setColor(new Color(206, 200, 30));
+		else if (colores[color + 1] == Bola.VERDE)
+			g2.setColor(new Color(55, 163, 40));
+		else if (colores[color + 1] == Bola.AZUL)
+			g2.setColor(new Color(100, 150, 229));
+		else if (colores[color + 1] == Bola.ROJO)
+			g2.setColor(new Color(186, 18, 38));
+		g2.fillOval(350, 224, 30, 30);
 
 	}
 

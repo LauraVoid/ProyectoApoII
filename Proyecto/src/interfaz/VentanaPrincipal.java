@@ -107,7 +107,7 @@ public class VentanaPrincipal extends JFrame {
 		} catch (NoExisteBolaException e) {
 			e.getMessage();
 		}
-		System.out.println("monedas   " + miZuma.getPrimerJugador().cantidadMonedas());
+		//System.out.println("monedas   " + miZuma.getPrimerJugador().cantidadMonedas());
 	}
 
 	public void iniciarMovimientoBola() {

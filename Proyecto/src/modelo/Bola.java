@@ -297,45 +297,130 @@ public class Bola {
 	public void estaEsquinaDerInf() {
 		int resta=0;
 		int faltante=0;
-		setEsquina(1);
+		
 	
 			if(this.getPosX()>Bola.MAX_POSX-Bola.ANCHO_BOLA) {
-				resta=Bola.MAX_POSX-this.getPosX();
-				faltante=Bola.ANCHO_BOLA-resta;
-				this.setPosX(this.getPosX()+resta);
-				this.setPosY(this.getPosY()-faltante);
 				
+				if((this.getPosY()>Bola.MIN_POSY+Bola.ALTO_BOLA)){
+					resta=Bola.MAX_POSX-this.getPosX();
+					faltante=Bola.ANCHO_BOLA-resta;
+					this.setPosX(this.getPosX()+resta);
+					this.setPosY(this.getPosY()-faltante);
+				}
+				else if((this.getPosY()<=Bola.MIN_POSY+Bola.ALTO_BOLA)){
+
+					resta=this.getPosY()-Bola.MIN_POSY;
+					faltante=Bola.ALTO_BOLA-resta;
+					this.setPosY(this.getPosY()-resta);
+					this.setPosX(this.getPosX()-faltante);
+				}
 				
-				
-			
-				
+				System.out.println("xxx  "+this.getPosX());
 			}
 			
-			else {
-				this.setPosX(this.getPosX() + Bola.ANCHO_BOLA);
+			else if(this.getPosX()<=Bola.ANCHO_BOLA*2&&this.getPosY()>=Bola.MIN_POSY&&this.getPosY()<=Bola.SEGUNDA_POSY) {
+              if(this.getPosY()<Bola.SEGUNDA_POSY-Bola.ALTO_BOLA) {
+				resta=this.getPosX()-Bola.ANCHO_BOLA;
+				faltante=Bola.ANCHO_BOLA-resta;
+				this.setPosX(this.getPosX()-resta);
+				this.setPosY(this.getPosY()+faltante);
+              }      
+              else if(this.getPosY()>=Bola.SEGUNDA_POSY-Bola.ALTO_BOLA) {
+            	  resta=Bola.SEGUNDA_POSY-this.getPosY();
+  				faltante=Bola.ALTO_BOLA-resta;
+  				this.setPosY(Bola.SEGUNDA_POSY);
+  				this.setPosX(this.getPosX()+faltante);
+              }
+               }
+			
+				else {
+				
+				if((this.getPosY()==Bola.MAX_POSY))this.setPosX(this.getPosX() + Bola.ANCHO_BOLA);
+				else if((this.getPosY()==Bola.MIN_POSY))this.setPosX(this.getPosX() - Bola.ANCHO_BOLA);
 				
 		
 		}
 			
+			
+			
 	}
+	
+	/**public void estaEsquinaDerInf() {
+		int resta=0;
+		int faltante=0;
+		
+	
+			if(this.getPosX()>Bola.MAX_POSX-Bola.ANCHO_BOLA) {
+				
+				if((this.getPosY()>Bola.MIN_POSY+Bola.ALTO_BOLA)){
+					resta=Bola.MAX_POSX-this.getPosX();
+					faltante=Bola.ANCHO_BOLA-resta;
+					this.setPosX(this.getPosX()+resta);
+					this.setPosY(this.getPosY()-faltante);
+				}
+				else if((this.getPosY()<=Bola.MIN_POSY+Bola.ALTO_BOLA)){
+
+					resta=this.getPosY()-Bola.MIN_POSY;
+					faltante=Bola.ALTO_BOLA-resta;
+					this.setPosY(this.getPosY()-resta);
+					this.setPosX(this.getPosX()-faltante);
+				}
+				
+				System.out.println("xxx  "+this.getPosX());
+			
+			}
+			else if(this.getPosX()<(Bola.ANCHO_BOLA*2)&&this.getPosY()>=Bola.MIN_POSY&&this.getPosY()<Bola.SEGUNDA_POSY-Bola.ALTO_BOLA) {
+				if(this.getPosY()<Bola.SEGUNDA_POSY-Bola.ALTO_BOLA ) {
+				resta=this.getPosX()-Bola.ANCHO_BOLA;
+				faltante=Bola.ANCHO_BOLA-resta;
+				this.setPosX(this.getPosX()-resta);
+				this.setPosY(this.getPosY()+faltante);
+				 }
+				 else if(this.getPosY()>=Bola.SEGUNDA_POSY-Bola.ALTO_BOLA) {
+					
+						this.setPosY(Bola.SEGUNDA_POSY);
+						
+				 }
+				
+			}
+			/**else if(this.getPosY()>=Bola.SEGUNDA_POSY-Bola.ALTO_BOLA &&this.getPosY()>=Bola.MIN_POSY&&this.getPosY()<=Bola.SEGUNDA_POSY) {
+				resta=Bola.SEGUNDA_POSY-this.getPosY();
+				faltante=Bola.ALTO_BOLA-resta;
+				this.setPosY(Bola.SEGUNDA_POSY);
+				this.setPosX(this.getPosX()+faltante);
+				
+				System.out.println("xNueva "+this.getPosX());
+				System.out.println("yNueva "+this.getPosY());//
+				
+				
+			else {
+				/**if((this.getPosY()>Bola.MIN_POSY+Bola.ALTO_BOLA))this.setPosX(this.getPosX() + Bola.ANCHO_BOLA);
+				else if((this.getPosY()<=Bola.MIN_POSY+Bola.ALTO_BOLA))this.setPosX(this.getPosX() - Bola.ANCHO_BOLA);//
+				if((this.getPosY()==Bola.MAX_POSY))this.setPosX(this.getPosX() + Bola.ANCHO_BOLA);
+				else if((this.getPosY()==Bola.MIN_POSY))this.setPosX(this.getPosX() - Bola.ANCHO_BOLA);
+		
+		}
+			
+			
+			
+			
+	}*/
 	public void estaEsquinaDerSup() {
 		int resta=0;
 		int faltante=0;
 		setEsquina(2);
 	   
-			if(this.getPosY()<Bola.MIN_POSY+Bola.ALTO_BOLA) {
-				resta=this.getPosY()-Bola.MIN_POSY;
-				faltante=Bola.ALTO_BOLA-resta;
-				
-				this.setPosY(this.getPosY()-resta);
-				this.setPosX(this.getPosX()-faltante);
-				
-			}
-			else {
-				this.setPosY(this.getPosY() - Bola.ALTO_BOLA);
-		
-		}
+		if(this.getPosY()<Bola.MIN_POSY+Bola.ALTO_BOLA) {
 			
+			resta=this.getPosY()-Bola.MIN_POSY;
+			faltante=Bola.ALTO_BOLA-resta;
+			
+			this.setPosY(this.getPosY()-resta);
+			this.setPosX(this.getPosX()-faltante);
+			
+		}
+		
+		
 	
 	}
 	

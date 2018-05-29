@@ -144,6 +144,7 @@ public class Zuma implements Contable{
 			buscarBolaPosicion(posX, posY).getAnterior().setSiguiente(nueva);
 			nueva.setAnterior(buscarBolaPosicion(posX, posY).getAnterior());
 			buscarBolaPosicion(posX, posY).setAnterior(nueva);
+			eliminarBola(nueva, posX, posY);
 			sumarMonedas(nueva, posX, posY);
 		}
 	}
@@ -208,14 +209,14 @@ public class Zuma implements Contable{
 	public void aumentarPosiciones(int posX, int posY) throws NoExisteBolaException {
 		Bola actual = primerBola;
 		boolean esta=true;
+		int resta=0;
+		int faltante=0;
 
 		while (actual != null && (actual != buscarBolaPosicion(posX, posY))) {
 
-			if (actual.getPosX() <= Bola.MAX_POSX && actual.getPosY() <= Bola.MAX_POSY) {
+			if (actual.getPosX() <= Bola.MAX_POSX && actual.getPosY() <= Bola.MAX_POSY ) {
 				actual.estaEsquinaDerInf();
-				//actual.estaEsquinaDerSup();
 			}
-		   
 			
 				
 			/**if ((actual.getPosY() <= Bola.MIN_POSY) && (actual.getPosX() <= Bola.MAX_POSX))
