@@ -54,6 +54,19 @@ public class Poder {
 				der.addPoder(nuevo);
 		}
 	}
+	public Poder buscarPoder(int num) {
+		
+		if(velocidad==num) {
+			return this;
+		}else if(velocidad>=num) {
+			if(izq!=null) {
+				return izq.buscarPoder(num);
+			}else
+				return null;
+		}else if(der!=null) {
+			return der.buscarPoder(num);
+		}else return null;
+	}
 	
 	
 

@@ -23,6 +23,7 @@ public class Zuma implements Contable{
 	private Rana ranita;
 	private Caja cajita;
 	
+	
 	public Zuma() {
 
 		primerBola = null;
@@ -144,7 +145,7 @@ public class Zuma implements Contable{
 			buscarBolaPosicion(posX, posY).getAnterior().setSiguiente(nueva);
 			nueva.setAnterior(buscarBolaPosicion(posX, posY).getAnterior());
 			buscarBolaPosicion(posX, posY).setAnterior(nueva);
-			eliminarBola(nueva, posX, posY);
+			//eliminarBola(nueva, posX, posY);
 			sumarMonedas(nueva, posX, posY);
 		}
 	}
@@ -229,7 +230,14 @@ public class Zuma implements Contable{
 		}
 	}
 	
-	
+	/**
+	 * Elimina la bola que ha sido seleccionada teniendo en cuenta si son del mismo color que la bala
+	 * @param nueva Bola nueva a ingresar a la lista
+	 * @param x pos X de la bola seleccionada
+	 * @param y pos Y de la bola seleccionada
+	 * @return elimino boolean que establece si la bola ha sido eliminada de la lista
+	 * @throws NoExisteBolaException
+	 */
 	
 	public boolean eliminarBola(Bola nueva,int x, int y) throws NoExisteBolaException {
 		boolean elimino =false;
@@ -318,12 +326,21 @@ public class Zuma implements Contable{
 		}
 
 	}
+	/**
+	 * Permite agregar una moneda al arbol del jugador si el método eliminarBola retorna true
+	* @param nueva Bola nueva a ingresar a la lista
+	 * @param x pos X de la bola seleccionada
+	 * @param y pos Y de la bola seleccionada
+	 * @throws NoExisteBolaException
+	 */
 	
 	public void sumarMonedas(Bola nueva, int x, int y) throws NoExisteBolaException {
 		Jugador actual =primerJugador;
 		while(actual!=null) {
 			if(eliminarBola(nueva, x, y)) {
-				actual.addMoneda(new Moneda((int) (Math.random()*100)));
+				int val=(int) (Math.random()*100);
+				System.out.println("Valor de la moneda aleatoria "+val);
+				actual.addMoneda(new Moneda(val));
 			}
 			actual=actual.getSiguiente();
 		}

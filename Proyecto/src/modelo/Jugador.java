@@ -15,6 +15,7 @@ public class Jugador implements Comparable<Jugador>, Serializable {
 	private Jugador siguiente;
 	private Jugador anterior;
 	private Moneda raiz;
+	private ArrayList<Moneda> monedas;
 
 	public Jugador(String nom, int edad) {
 		this.nombre = nom;
@@ -199,33 +200,36 @@ public class Jugador implements Comparable<Jugador>, Serializable {
 	 */
 
 	public ArrayList<Moneda> darListaMonedas() {
-		ArrayList<Moneda> lista = new ArrayList<Moneda>();
 
-		if (raiz != null) {
+		monedas = new ArrayList<Moneda>();
+		listaSeleccion(raiz);
 
-			lista.add(raiz);
-			Moneda izq = raiz.getIzq();
-			Moneda der = raiz.getDer();
+		return monedas;
+	}
+	public void listaSeleccion(Moneda selec) {
 
-			int cantidad = cantidadMonedas();
+		if (selec != null) {
+			listaSeleccion(selec.getIzq());
 
-			while (cantidad >= 0) {
+			monedas.add(selec);
+			listaSeleccion(selec.getDer());
 
-				if (izq != null) {
-					lista.add(izq);
-					izq = izq.getIzq();
-				}
-				if (der != null) {
-					lista.add(der);
-					der = der.getDer();
-				}
-				cantidad--;
-
-			}
 		}
 
-		return lista;
+	}
+	
 
+	/**
+	 * Suma todas las monedas que contiene el jugador en el árbol
+	 * @return n Suma de la denominacion de todas las monedas
+	 * n!=null;
+	 */
+	public int darMonedas() {
+		int n=0;
+		for (int i = 0; i < darListaMonedas().size(); i++) {
+			n+=darListaMonedas().get(i).getDenominacion();
+		}
+		return n;
 	}
 	/**
 	 * Crea una lista con las monedas organizadas de menor a mayor con el método de

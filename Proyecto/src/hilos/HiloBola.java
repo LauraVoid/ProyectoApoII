@@ -3,6 +3,8 @@ package hilos;
 import interfaz.VentanaPrincipal;
 import modelo.Bola;
 import modelo.BolaNormal;
+import modelo.RanaNormal;
+import modelo.RanaPoder;
 import modelo.Zuma;
 
 public class HiloBola extends Thread{
@@ -13,6 +15,7 @@ public class HiloBola extends Thread{
 	public HiloBola(Zuma miZuma,VentanaPrincipal ventanita) {
 		this.miZuma=miZuma;
 		this.ventanita=ventanita;
+//		ventanita.crearPoderes();
 	}
 	
 	public void run() {
@@ -24,9 +27,14 @@ public class HiloBola extends Thread{
 			BolaNormal bola = (BolaNormal) actual;
 			bola.mover(0,0);
 			try {
+				if(miZuma.getRanita() instanceof RanaNormal) {
 				Thread.sleep(1);
+				}else if(miZuma.getRanita() instanceof RanaPoder) {
+					RanaPoder rana= (RanaPoder)miZuma.getRanita();
+					Thread.sleep(rana.darPoderAleatorio().getVelocidad());
+				}
+				
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			ventanita.repaint();

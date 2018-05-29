@@ -122,14 +122,6 @@ public class PanelJuego extends JPanel implements MouseListener, ActionListener 
 	@Override
 	public void mouseClicked(MouseEvent e) {
 
-		// System.out.println("X " + e.getX());
-		// System.out.println("Y " + e.getY());
-		//// double angulo=0;
-		//// double dis= Math.sqrt(((Math.pow((e.getX()-ventanita.xRana()),
-		// 2))+(Math.pow((e.getY()-ventanita.yRana()), 2))));
-		//// System.out.println(dis);
-		//// angulo=((ventanita.yRana()-e.getY())/dis);
-		//
 		double x = (e.getX() - ventanita.xRana());
 		double y = (e.getY() - ventanita.yRana());
 		double r = Math.hypot(x, y);
@@ -164,7 +156,9 @@ public class PanelJuego extends JPanel implements MouseListener, ActionListener 
 			JOptionPane.showMessageDialog(null, e1.getMessage(), "LANZA MEJOR", JOptionPane.WARNING_MESSAGE, icon);
 		}
 
-		System.out.println(ventanita.numeroBolas());
+//		System.out.println(ventanita.numeroBolas());
+		ventanita.sumarMonedas();
+//		System.out.println();
 
 	}
 

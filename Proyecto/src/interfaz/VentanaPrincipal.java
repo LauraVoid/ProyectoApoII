@@ -3,7 +3,6 @@ package interfaz;
 import java.awt.BorderLayout;
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -17,6 +16,8 @@ import modelo.Bola;
 import modelo.BolaNormal;
 import modelo.Caja;
 import modelo.Jugador;
+import modelo.Poder;
+import modelo.RanaPoder;
 import modelo.Zuma;
 
 public class VentanaPrincipal extends JFrame {
@@ -32,7 +33,9 @@ public class VentanaPrincipal extends JFrame {
 		setTitle("Zuma");
 
 		setLayout(new BorderLayout());
+		
 		miZuma = new Zuma();
+//		crearPoderes();
 		panelMenu = new PanelMenu(this);
 		panelLista = new PanelListaJugadores(this);
 		panelCarga = new PanelCarga(this);
@@ -50,6 +53,19 @@ public class VentanaPrincipal extends JFrame {
 		add(panelJuego, BorderLayout.CENTER);
 
 	}
+	public void crearPoderes() {
+		
+    RanaPoder rana = new RanaPoder("c", 290, 200);
+   
+    rana.addPoder(new Poder(4));
+	rana.addPoder(new Poder(1));
+	rana.addPoder(new Poder(2));
+	rana.addPoder(new Poder(3));	
+	rana.addPoder(new Poder(5));
+	rana.addPoder(new Poder(6));
+	 miZuma.setRanita(rana);
+	
+	}
 
 	public void cargar() {
 		Caja caja = new Caja(100, 170);
@@ -60,6 +76,7 @@ public class VentanaPrincipal extends JFrame {
 		panelCarga.setVisible(true);
 		add(panelCarga, BorderLayout.CENTER);
 	}
+	
 
 	public Caja darCaja() {
 		return miZuma.getCajita();
@@ -154,9 +171,14 @@ public class VentanaPrincipal extends JFrame {
 		miZuma.addJugador(j1);
 
 	}
-	/*
-	 * GitHub me la pela XXXXXXXXXXXXXXX
-	 */
+	public void sumarMonedas() {
+		int n=miZuma.getPrimerJugador().darMonedas();
+		
+		if(n>=150) {
+//			System.out.println("Cambio de nivel "+n);
+			crearPoderes();
+		}
+	}
 
 	public void cargar(String nombre) throws NullPointerException {
 		try {
