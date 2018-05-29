@@ -322,5 +322,34 @@ class ZumaTest {
 		assertEquals(bolitas.get(3).getPosY(), bola4.getPosY());
 
 	}
+	
+	 @Test
+	    public void aumentarPosicionesBolasTest() {
+	    	setUpUno();
+	    	BolaNormal bola1 = new BolaNormal(2, 70, Bola.MAX_POSY, false);
+	    	BolaNormal bola2 = new BolaNormal(3, 40, Bola.MAX_POSY, false);
+	    	BolaNormal bola3 = new BolaNormal(4, 10, Bola.MAX_POSY, false);
+	    	BolaNormal bola4 = new BolaNormal(1, -20, Bola.MAX_POSY, false);
+	    	
+	    	zuma.addBolaAlFinal(bola1);
+			zuma.addBolaAlFinal(bola2);
+			zuma.addBolaAlFinal(bola3);
+			zuma.addBolaAlFinal(bola4);
+	    	
+			try {
+				zuma.aumentarPosiciones(10,  Bola.MAX_POSY);
+				assertEquals(bola1.getPosX(), 100);
+				assertEquals(bola2.getPosX(), 70);
+				assertEquals(bola3.getPosX(), 10);
+			} catch (NoExisteBolaException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			
+			
+		}
+	
 
 }
