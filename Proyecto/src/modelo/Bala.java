@@ -93,6 +93,14 @@ public class Bala extends Bola {
 		}
 
 	}
+	/**
+	 * Mueve la bala teniendo en cuenta los valores que ingresan por parametro
+	 * 
+	 * @param x
+	 *            Posicion en el eje X a donde se desea enviar la bala
+	 * @param y
+	 *            Posicion en el eje Y a donde se desea enviar la bala
+	 */
 
 	public void mover(int x, int y) {
 
@@ -118,6 +126,14 @@ public class Bala extends Bola {
 		}
 
 	}
+	/**
+	 * Mueve la bala teniendo en cuenta los valores que ingresan por parametro
+	 * 
+	 * @param x
+	 *            Posicion en el eje X a donde se desea enviar la bala
+	 * @param y
+	 *            Posicion en el eje Y a donde se desea enviar la bala
+	 */
 
 	public void moverAbajo(int x, int y) {
 		

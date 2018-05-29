@@ -202,17 +202,17 @@ public class Jugador implements Comparable<Jugador>, Serializable {
 	public ArrayList<Moneda> darListaMonedas() {
 
 		monedas = new ArrayList<Moneda>();
-		listaSeleccion(raiz);
+		listaMon(raiz);
 
 		return monedas;
 	}
-	public void listaSeleccion(Moneda selec) {
+	public void listaMon(Moneda selec) {
 
 		if (selec != null) {
-			listaSeleccion(selec.getIzq());
+			listaMon(selec.getIzq());
 
 			monedas.add(selec);
-			listaSeleccion(selec.getDer());
+			listaMon(selec.getDer());
 
 		}
 
