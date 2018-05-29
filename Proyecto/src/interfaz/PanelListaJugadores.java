@@ -69,10 +69,15 @@ public class PanelListaJugadores extends JDialog implements ActionListener {
 
 		if (e.getActionCommand().equals(ORDENAR)) {
 
-			String[] opciones = { "Nombre", "Apellido" };
+			String[] opciones = { "Nombre", "Edad" };
 			int respuesta = JOptionPane.showOptionDialog(null, "Por qué desea ordenar", "Ordenar",
 					JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, opciones, opciones[0]);
 			agregarTexto(opciones[respuesta]);
+		}
+		else if(e.getActionCommand().equals(BUSCAR)) {
+			String res= JOptionPane.showInputDialog("Escribir nombre del jugador");
+			mostarBuscado(res);
+			
 		}
 
 	}
@@ -80,14 +85,29 @@ public class PanelListaJugadores extends JDialog implements ActionListener {
 		txtAMostrar.append("");
 		if(opcion.equals("Nombre")) {
 			ArrayList <Jugador> lista =ventanita.cargarListaNombre();
-			
+//			System.out.println(lista.get(0).getNombre());
 			for (int i = 0; i < lista.size(); i++) {
 				txtAMostrar.append("Nombre: " +lista.get(i).getNombre()+ "\n");
 				
 				
 			}
+		}else if(opcion.equals("Edad")) {
+			txtAMostrar.append("");
+			ArrayList <Jugador> lista =ventanita.cargarListaEdad();
+//			System.out.println(lista.get(0).getNombre());
+			for (int i = 0; i < lista.size(); i++) {
+				txtAMostrar.append("Edad: " +lista.get(i).getEdad()+ "\n");
+				
+				
+			}
+			
 		}
 		
+		
 	}
+	public void mostarBuscado(String r) {
+		txtAMostrar.append(ventanita.bucarJugador(r).getNombre()+" "+ventanita.bucarJugador(r).getEdad());
+	}
+	
 
 }
